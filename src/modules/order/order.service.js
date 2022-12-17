@@ -34,7 +34,7 @@ exports.createOrder = async (user, data) =>{
             }
         }
 
-        const {order_tray, delivery_address} = data
+        const {order_tray, delivery_address, customer_contact} = data
         let total_price = 0
         let finalOrderedItems = []
         let ordered_items_ids = []
@@ -235,7 +235,8 @@ exports.createOrder = async (user, data) =>{
                 items: ordered_items_ids,
                 order_cost: total_price,
                 trackingId: tracking_id,
-                delivery_date:deliveryDate()
+                delivery_date:deliveryDate(),
+                customer_contact: user?.phone_number? user.phone_number: customer_contact
             },
             {where: {id:newOrder.id, deleted: false}}
         )
@@ -260,7 +261,8 @@ exports.createOrder = async (user, data) =>{
             delivery_type: placedOrder.delivery_type,
             delivery_address: placedOrder.delivery_address,
             delivery_date: placedOrder.delivery_date,
-            tracking_id: placedOrder.trackingId
+            tracking_id: placedOrder.trackingId,
+            customer_contact: placedOrder.customer_contact
         }
         //send mail to customer
         const customerMail = await sendOrderDetailstoMail({

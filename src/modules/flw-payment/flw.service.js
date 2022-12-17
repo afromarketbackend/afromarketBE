@@ -122,14 +122,16 @@ exports.confirmPaymentInbound = async (paymentResponse) => {
             tx_ref,
             flw_transaction_id
         } = paymentResponse
-
         const pendingTransaction = await Transaction.findOne({where:{tx_ref: tx_ref}}) 
+        let paidOrder
         if(!pendingTransaction){
             return {
                 error: true,
                 message: "Ongoing Transaction Not Found"
             }
         }
+        const processedOrder = await Order.findOne({where:{id: pendingTransaction.order_id}})
+
         await Transaction.update(
             {
                 flw_transaction_id: flw_transaction_id,
@@ -143,14 +145,15 @@ exports.confirmPaymentInbound = async (paymentResponse) => {
             )
         if(status === "successful"){
             await Order.update(
-                {isPaid: true},
+                { isPaid: true,
+                    items: processedOrder.items
+                },
                 {where:{id: pendingTransaction.order_id}}
             )
-            const paidOrder = await Order.findOne(
+            paidOrder = await Order.findOne(
                 {attributes:{excludes:['deleted']}},
                 {where:{id: pendingTransaction.order_id}}
             )
-            return paidOrder
         }
         
         // Update Merchant Withdrawals status to 'approved' since payment has been confirmed

@@ -3,7 +3,9 @@ Joi.objectId = require("joi-objectid")(Joi);
 
 exports.createOrderSchema = Joi.object().keys({
     order_tray: Joi.array().items(Joi.object()).required(),
-    delivery_address: Joi.string().optional()
+    delivery_address: Joi.string().optional(),
+    customer_contact: Joi.string().required()
+
 })
 
 exports.cancelOrderSchema = Joi.object().keys({
