@@ -1,0 +1,1512 @@
+{
+    "tables": {
+        "Admins": {
+            "tableName": "Admins",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "unique": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "fullName": {
+                    "field": "fullName",
+                    "seqType": "Sequelize.STRING"
+                },
+                "email": {
+                    "unique": true,
+                    "field": "email",
+                    "seqType": "Sequelize.STRING"
+                },
+                "phone_number": {
+                    "allowNull": true,
+                    "field": "phone_number",
+                    "seqType": "Sequelize.STRING"
+                },
+                "password": {
+                    "field": "password",
+                    "seqType": "Sequelize.STRING"
+                },
+                "role": {
+                    "defaultValue": {
+                        "value": "admin"
+                    },
+                    "field": "role",
+                    "seqType": "Sequelize.ENUM('super', 'admin')"
+                },
+                "isBlocked": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "isBlocked",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "refreshTokens": {
+                    "field": "refreshTokens",
+                    "seqType": "Sequelize.STRING"
+                },
+                "deleted": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "deleted",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "created_at": {
+                    "allowNull": false,
+                    "field": "created_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updated_at": {
+                    "allowNull": false,
+                    "field": "updated_at",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "Customers": {
+            "tableName": "Customers",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "unique": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "customer_id": {
+                    "field": "customer_id",
+                    "seqType": "Sequelize.STRING"
+                },
+                "customer_name": {
+                    "field": "customer_name",
+                    "seqType": "Sequelize.STRING"
+                },
+                "customer_contact": {
+                    "unique": true,
+                    "field": "customer_contact",
+                    "seqType": "Sequelize.STRING"
+                },
+                "customer_address": {
+                    "allowNull": true,
+                    "field": "customer_address",
+                    "seqType": "Sequelize.STRING"
+                },
+                "user_id": {
+                    "field": "user_id",
+                    "seqType": "Sequelize.STRING"
+                },
+                "deleted": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "deleted",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "created_at": {
+                    "allowNull": false,
+                    "field": "created_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updated_at": {
+                    "allowNull": false,
+                    "field": "updated_at",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "Disputes": {
+            "tableName": "Disputes",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "unique": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "product_image": {
+                    "field": "product_image",
+                    "seqType": "Sequelize.STRING"
+                },
+                "reason": {
+                    "field": "reason",
+                    "seqType": "Sequelize.ENUM('Wrong Order', 'Lost Order', 'Damaged Product', 'Fake Product')"
+                },
+                "status": {
+                    "defaultValue": {
+                        "value": "Initiated"
+                    },
+                    "field": "status",
+                    "seqType": "Sequelize.ENUM('Initiated', 'Resolved')"
+                },
+                "awarded_to": {
+                    "defaultValue": {
+                        "value": "inView"
+                    },
+                    "field": "awarded_to",
+                    "seqType": "Sequelize.ENUM('customer', 'seller', 'inView')"
+                },
+                "description": {
+                    "field": "description",
+                    "seqType": "Sequelize.STRING"
+                },
+                "deleted": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "deleted",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "created_at": {
+                    "allowNull": false,
+                    "field": "created_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updated_at": {
+                    "allowNull": false,
+                    "field": "updated_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "UserId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "UserId",
+                    "seqType": "Sequelize.UUID"
+                },
+                "OrderId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Orders",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "OrderId",
+                    "seqType": "Sequelize.UUID"
+                }
+            },
+            "indexes": []
+        },
+        "Inventories": {
+            "tableName": "Inventories",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "unique": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "name": {
+                    "field": "name",
+                    "seqType": "Sequelize.STRING"
+                },
+                "images": {
+                    "field": "images",
+                    "seqType": "Sequelize.STRING"
+                },
+                "description": {
+                    "field": "description",
+                    "seqType": "Sequelize.STRING"
+                },
+                "specific_details": {
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.Object"
+                    },
+                    "field": "specific_details",
+                    "seqType": "Sequelize.JSON"
+                },
+                "quantity_available": {
+                    "defaultValue": {
+                        "value": 1
+                    },
+                    "field": "quantity_available",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "price": {
+                    "field": "price",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "isapproved": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "isapproved",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "ratings": {
+                    "field": "ratings",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "status": {
+                    "defaultValue": {
+                        "value": "available"
+                    },
+                    "field": "status",
+                    "seqType": "Sequelize.ENUM('available', 'out of stock')"
+                },
+                "inventory_owner": {
+                    "field": "inventory_owner",
+                    "seqType": "Sequelize.STRING"
+                },
+                "deleted": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "deleted",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "created_at": {
+                    "allowNull": false,
+                    "field": "created_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updated_at": {
+                    "allowNull": false,
+                    "field": "updated_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "MerchantId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Merchants",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "MerchantId",
+                    "seqType": "Sequelize.UUID"
+                },
+                "ProductId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Products",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "ProductId",
+                    "seqType": "Sequelize.UUID"
+                },
+                "CategoryId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Categories",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "CategoryId",
+                    "seqType": "Sequelize.UUID"
+                }
+            },
+            "indexes": []
+        },
+        "Merchants": {
+            "tableName": "Merchants",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "unique": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "business_name": {
+                    "field": "business_name",
+                    "seqType": "Sequelize.STRING"
+                },
+                "business_type": {
+                    "defaultValue": {
+                        "value": "public limited company"
+                    },
+                    "field": "business_type",
+                    "seqType": "Sequelize.ENUM('public limited company', 'private limited company')"
+                },
+                "business_description": {
+                    "field": "business_description",
+                    "seqType": "Sequelize.STRING"
+                },
+                "address": {
+                    "field": "address",
+                    "seqType": "Sequelize.STRING"
+                },
+                "bank_name": {
+                    "field": "bank_name",
+                    "seqType": "Sequelize.STRING"
+                },
+                "account_name": {
+                    "field": "account_name",
+                    "seqType": "Sequelize.STRING"
+                },
+                "account_number": {
+                    "field": "account_number",
+                    "seqType": "Sequelize.STRING"
+                },
+                "bank_verification_number": {
+                    "field": "bank_verification_number",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "cac_document": {
+                    "field": "cac_document",
+                    "seqType": "Sequelize.STRING"
+                },
+                "tax_id_number": {
+                    "field": "tax_id_number",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "brand_image": {
+                    "field": "brand_image",
+                    "seqType": "Sequelize.STRING"
+                },
+                "email": {
+                    "unique": true,
+                    "field": "email",
+                    "seqType": "Sequelize.STRING"
+                },
+                "password": {
+                    "field": "password",
+                    "seqType": "Sequelize.STRING"
+                },
+                "phone_number": {
+                    "allowNull": true,
+                    "field": "phone_number",
+                    "seqType": "Sequelize.STRING"
+                },
+                "isVerified": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "isVerified",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "isBlocked": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "isBlocked",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "refreshTokens": {
+                    "field": "refreshTokens",
+                    "seqType": "Sequelize.STRING"
+                },
+                "ratings": {
+                    "field": "ratings",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "deleted": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "deleted",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "created_at": {
+                    "allowNull": false,
+                    "field": "created_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updated_at": {
+                    "allowNull": false,
+                    "field": "updated_at",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "OneTimePasswords": {
+            "tableName": "OneTimePasswords",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "unique": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "otp": {
+                    "field": "otp",
+                    "seqType": "Sequelize.STRING"
+                },
+                "signedToken": {
+                    "field": "signedToken",
+                    "seqType": "Sequelize.STRING"
+                },
+                "deleted": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "deleted",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "created_at": {
+                    "allowNull": false,
+                    "field": "created_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updated_at": {
+                    "allowNull": false,
+                    "field": "updated_at",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "Orders": {
+            "tableName": "Orders",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "unique": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "items": {
+                    "field": "items",
+                    "seqType": "Sequelize.STRING"
+                },
+                "isPaid": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "isPaid",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "payment_type": {
+                    "defaultValue": {
+                        "value": "on-delivery"
+                    },
+                    "field": "payment_type",
+                    "seqType": "Sequelize.ENUM('pay-now', 'on-delivery')"
+                },
+                "order_cost": {
+                    "defaultValue": {
+                        "value": 0
+                    },
+                    "field": "order_cost",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "delivery_type": {
+                    "defaultValue": {
+                        "value": "door_delivery"
+                    },
+                    "field": "delivery_type",
+                    "seqType": "Sequelize.ENUM('door_delivery', 'pickup_station')"
+                },
+                "delivery_address": {
+                    "allowNull": false,
+                    "field": "delivery_address",
+                    "seqType": "Sequelize.STRING"
+                },
+                "delivery_date": {
+                    "field": "delivery_date",
+                    "seqType": "Sequelize.DATE"
+                },
+                "customer_contact": {
+                    "field": "customer_contact",
+                    "seqType": "Sequelize.STRING"
+                },
+                "status": {
+                    "defaultValue": {
+                        "value": "active"
+                    },
+                    "field": "status",
+                    "seqType": "Sequelize.ENUM('canceled', 'active', 'delivered', 'disputed')"
+                },
+                "trackingId": {
+                    "field": "trackingId",
+                    "seqType": "Sequelize.STRING"
+                },
+                "deleted": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "deleted",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "created_at": {
+                    "allowNull": false,
+                    "field": "created_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updated_at": {
+                    "allowNull": false,
+                    "field": "updated_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "UserId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "field": "UserId",
+                    "seqType": "Sequelize.UUID"
+                },
+                "TrackerId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Trackers",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "TrackerId",
+                    "seqType": "Sequelize.UUID"
+                }
+            },
+            "indexes": []
+        },
+        "OrderedItems": {
+            "tableName": "OrderedItems",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "unique": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "product_name": {
+                    "allowNull": false,
+                    "field": "product_name",
+                    "seqType": "Sequelize.STRING"
+                },
+                "images": {
+                    "field": "images",
+                    "seqType": "Sequelize.STRING"
+                },
+                "quantity_ordered": {
+                    "defaultValue": {
+                        "value": 1
+                    },
+                    "field": "quantity_ordered",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "price": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "price",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "total": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "total",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "deleted": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "deleted",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "resale": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "resale",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "resale_profit": {
+                    "field": "resale_profit",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "profit_owner": {
+                    "field": "profit_owner",
+                    "seqType": "Sequelize.STRING"
+                },
+                "created_at": {
+                    "allowNull": false,
+                    "field": "created_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updated_at": {
+                    "allowNull": false,
+                    "field": "updated_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "OrderId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Orders",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "OrderId",
+                    "seqType": "Sequelize.UUID"
+                },
+                "MerchantId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Merchants",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "MerchantId",
+                    "seqType": "Sequelize.UUID"
+                },
+                "ProductId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Products",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "ProductId",
+                    "seqType": "Sequelize.UUID"
+                }
+            },
+            "indexes": []
+        },
+        "Payouts": {
+            "tableName": "Payouts",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "unique": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "amount": {
+                    "field": "amount",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "payable_amount": {
+                    "field": "payable_amount",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "debit_currency": {
+                    "defaultValue": {
+                        "value": "NGN"
+                    },
+                    "field": "debit_currency",
+                    "seqType": "Sequelize.STRING"
+                },
+                "email": {
+                    "field": "email",
+                    "seqType": "Sequelize.STRING"
+                },
+                "phone_number": {
+                    "field": "phone_number",
+                    "seqType": "Sequelize.STRING"
+                },
+                "tax": {
+                    "field": "tax",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "status": {
+                    "defaultValue": {
+                        "value": "NEW"
+                    },
+                    "field": "status",
+                    "seqType": "Sequelize.ENUM('NEW', 'SUCCESSFUL', 'FAILED')"
+                },
+                "narration": {
+                    "field": "narration",
+                    "seqType": "Sequelize.STRING"
+                },
+                "date_initiated": {
+                    "field": "date_initiated",
+                    "seqType": "Sequelize.DATE"
+                },
+                "date_paid": {
+                    "field": "date_paid",
+                    "seqType": "Sequelize.DATE"
+                },
+                "beneficiary_account_bank": {
+                    "field": "beneficiary_account_bank",
+                    "seqType": "Sequelize.STRING"
+                },
+                "beneficiary_account_name": {
+                    "field": "beneficiary_account_name",
+                    "seqType": "Sequelize.STRING"
+                },
+                "beneficiary_account_number": {
+                    "field": "beneficiary_account_number",
+                    "seqType": "Sequelize.STRING"
+                },
+                "payment_ref": {
+                    "field": "payment_ref",
+                    "seqType": "Sequelize.STRING"
+                },
+                "flw_transfer_id": {
+                    "field": "flw_transfer_id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "remarks": {
+                    "field": "remarks",
+                    "seqType": "Sequelize.STRING"
+                },
+                "deleted": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "deleted",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "created_at": {
+                    "allowNull": false,
+                    "field": "created_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updated_at": {
+                    "allowNull": false,
+                    "field": "updated_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "MerchantId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Merchants",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "MerchantId",
+                    "seqType": "Sequelize.UUID"
+                }
+            },
+            "indexes": []
+        },
+        "Categories": {
+            "tableName": "Categories",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "unique": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "name": {
+                    "field": "name",
+                    "seqType": "Sequelize.STRING"
+                },
+                "description": {
+                    "field": "description",
+                    "seqType": "Sequelize.STRING"
+                },
+                "created_by": {
+                    "field": "created_by",
+                    "seqType": "Sequelize.STRING"
+                },
+                "deleted": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "deleted",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "created_at": {
+                    "allowNull": false,
+                    "field": "created_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updated_at": {
+                    "allowNull": false,
+                    "field": "updated_at",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "Products": {
+            "tableName": "Products",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "unique": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "name": {
+                    "field": "name",
+                    "seqType": "Sequelize.STRING"
+                },
+                "images": {
+                    "field": "images",
+                    "seqType": "Sequelize.STRING"
+                },
+                "description": {
+                    "field": "description",
+                    "seqType": "Sequelize.STRING"
+                },
+                "specific_details": {
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.Object"
+                    },
+                    "field": "specific_details",
+                    "seqType": "Sequelize.JSON"
+                },
+                "quantity_available": {
+                    "defaultValue": {
+                        "value": 1
+                    },
+                    "field": "quantity_available",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "price": {
+                    "field": "price",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "category": {
+                    "field": "category",
+                    "seqType": "Sequelize.STRING"
+                },
+                "isapproved": {
+                    "defaultValue": {
+                        "value": true
+                    },
+                    "field": "isapproved",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "ratings": {
+                    "field": "ratings",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "status": {
+                    "defaultValue": {
+                        "value": "available"
+                    },
+                    "field": "status",
+                    "seqType": "Sequelize.ENUM('available', 'out of stock')"
+                },
+                "deleted": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "deleted",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "created_at": {
+                    "allowNull": false,
+                    "field": "created_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updated_at": {
+                    "allowNull": false,
+                    "field": "updated_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "MerchantId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Merchants",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "MerchantId",
+                    "seqType": "Sequelize.UUID"
+                },
+                "CategoryId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Categories",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "CategoryId",
+                    "seqType": "Sequelize.UUID"
+                }
+            },
+            "indexes": []
+        },
+        "Rates": {
+            "tableName": "Rates",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "unique": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "country": {
+                    "field": "country",
+                    "seqType": "Sequelize.STRING"
+                },
+                "state": {
+                    "unique": true,
+                    "field": "state",
+                    "seqType": "Sequelize.STRING"
+                },
+                "region": {
+                    "allowNull": true,
+                    "field": "region",
+                    "seqType": "Sequelize.STRING"
+                },
+                "price": {
+                    "defaultValue": {
+                        "value": 1
+                    },
+                    "field": "price",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "currency": {
+                    "allowNull": true,
+                    "field": "currency",
+                    "seqType": "Sequelize.STRING"
+                },
+                "deleted": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "deleted",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "created_at": {
+                    "allowNull": false,
+                    "field": "created_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updated_at": {
+                    "allowNull": false,
+                    "field": "updated_at",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "Reviews": {
+            "tableName": "Reviews",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "unique": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "text": {
+                    "field": "text",
+                    "seqType": "Sequelize.STRING"
+                },
+                "rating": {
+                    "defaultValue": {
+                        "value": 3
+                    },
+                    "field": "rating",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "product_owner_id": {
+                    "field": "product_owner_id",
+                    "seqType": "Sequelize.STRING"
+                },
+                "merchant_id": {
+                    "field": "merchant_id",
+                    "seqType": "Sequelize.STRING"
+                },
+                "deleted": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "deleted",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "created_at": {
+                    "allowNull": false,
+                    "field": "created_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updated_at": {
+                    "allowNull": false,
+                    "field": "updated_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "ProductId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Products",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "ProductId",
+                    "seqType": "Sequelize.UUID"
+                },
+                "UserId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "UserId",
+                    "seqType": "Sequelize.UUID"
+                }
+            },
+            "indexes": []
+        },
+        "Trackers": {
+            "tableName": "Trackers",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "unique": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "status": {
+                    "defaultValue": {
+                        "value": "order_placed"
+                    },
+                    "field": "status",
+                    "seqType": "Sequelize.ENUM('order_placed', 'order_in_progress', 'order_shipped', 'order_out_for_delivery', 'order_id_delivered')"
+                },
+                "trackingId": {
+                    "field": "trackingId",
+                    "seqType": "Sequelize.STRING"
+                },
+                "deleted": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "deleted",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "created_at": {
+                    "allowNull": false,
+                    "field": "created_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updated_at": {
+                    "allowNull": false,
+                    "field": "updated_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "OrderId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Orders",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "OrderId",
+                    "seqType": "Sequelize.UUID"
+                }
+            },
+            "indexes": []
+        },
+        "Transactions": {
+            "tableName": "Transactions",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "unique": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "tx_ref": {
+                    "field": "tx_ref",
+                    "seqType": "Sequelize.STRING"
+                },
+                "amount": {
+                    "field": "amount",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "currency": {
+                    "defaultValue": {
+                        "value": "NGN"
+                    },
+                    "field": "currency",
+                    "seqType": "Sequelize.STRING"
+                },
+                "order_id": {
+                    "field": "order_id",
+                    "seqType": "Sequelize.STRING"
+                },
+                "wallet_id": {
+                    "field": "wallet_id",
+                    "seqType": "Sequelize.STRING"
+                },
+                "previous_balance": {
+                    "field": "previous_balance",
+                    "seqType": "Sequelize.FLOAT"
+                },
+                "new_balance": {
+                    "field": "new_balance",
+                    "seqType": "Sequelize.FLOAT"
+                },
+                "email": {
+                    "field": "email",
+                    "seqType": "Sequelize.STRING"
+                },
+                "type": {
+                    "field": "type",
+                    "seqType": "Sequelize.ENUM('inbound', 'outbound', 'walletTopUp', 'walletDebit')"
+                },
+                "status": {
+                    "defaultValue": {
+                        "value": "pending"
+                    },
+                    "field": "status",
+                    "seqType": "Sequelize.ENUM('pending', 'successful', 'failed', 'cancelled')"
+                },
+                "flw_transaction_id": {
+                    "field": "flw_transaction_id",
+                    "seqType": "Sequelize.STRING"
+                },
+                "deleted": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "deleted",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "created_at": {
+                    "allowNull": false,
+                    "field": "created_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updated_at": {
+                    "allowNull": false,
+                    "field": "updated_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "UserId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "UserId",
+                    "seqType": "Sequelize.UUID"
+                }
+            },
+            "indexes": []
+        },
+        "Users": {
+            "tableName": "Users",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "unique": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "fullName": {
+                    "field": "fullName",
+                    "seqType": "Sequelize.STRING"
+                },
+                "email": {
+                    "unique": true,
+                    "field": "email",
+                    "seqType": "Sequelize.STRING"
+                },
+                "phone_number": {
+                    "allowNull": true,
+                    "field": "phone_number",
+                    "seqType": "Sequelize.STRING"
+                },
+                "password": {
+                    "field": "password",
+                    "seqType": "Sequelize.STRING"
+                },
+                "avatar": {
+                    "allowNull": true,
+                    "field": "avatar",
+                    "seqType": "Sequelize.STRING"
+                },
+                "isVerified": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "isVerified",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "isBlocked": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "isBlocked",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "refreshTokens": {
+                    "field": "refreshTokens",
+                    "seqType": "Sequelize.STRING"
+                },
+                "delivery_address": {
+                    "field": "delivery_address",
+                    "seqType": "Sequelize.STRING"
+                },
+                "deleted": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "deleted",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "created_at": {
+                    "allowNull": false,
+                    "field": "created_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updated_at": {
+                    "allowNull": false,
+                    "field": "updated_at",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "Wallets": {
+            "tableName": "Wallets",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "unique": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "text": {
+                    "field": "text",
+                    "seqType": "Sequelize.STRING"
+                },
+                "available_balace": {
+                    "defaultValue": {
+                        "value": 0
+                    },
+                    "field": "available_balace",
+                    "seqType": "Sequelize.FLOAT"
+                },
+                "previous_balance": {
+                    "defaultValue": {
+                        "value": 0
+                    },
+                    "field": "previous_balance",
+                    "seqType": "Sequelize.FLOAT"
+                },
+                "deleted": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "deleted",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "created_at": {
+                    "allowNull": false,
+                    "field": "created_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updated_at": {
+                    "allowNull": false,
+                    "field": "updated_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "WalletId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "WalletId",
+                    "seqType": "Sequelize.UUID"
+                },
+                "UserId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "field": "UserId",
+                    "seqType": "Sequelize.UUID"
+                }
+            },
+            "indexes": []
+        },
+        "Withdrawals": {
+            "tableName": "Withdrawals",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "unique": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "tx_ref": {
+                    "field": "tx_ref",
+                    "seqType": "Sequelize.STRING"
+                },
+                "amount": {
+                    "field": "amount",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "currency": {
+                    "defaultValue": {
+                        "value": "NGN"
+                    },
+                    "field": "currency",
+                    "seqType": "Sequelize.STRING"
+                },
+                "order_id": {
+                    "field": "order_id",
+                    "seqType": "Sequelize.STRING"
+                },
+                "email": {
+                    "field": "email",
+                    "seqType": "Sequelize.STRING"
+                },
+                "status": {
+                    "defaultValue": {
+                        "value": "pending"
+                    },
+                    "field": "status",
+                    "seqType": "Sequelize.ENUM('pending', 'successful', 'failed', 'approved')"
+                },
+                "tax": {
+                    "field": "tax",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "resale": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "resale",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "due_date": {
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.Date"
+                    },
+                    "field": "due_date",
+                    "seqType": "Sequelize.DATE"
+                },
+                "date_paid": {
+                    "field": "date_paid",
+                    "seqType": "Sequelize.DATE"
+                },
+                "payment_ref": {
+                    "defaultValue": {
+                        "value": ""
+                    },
+                    "field": "payment_ref",
+                    "seqType": "Sequelize.STRING"
+                },
+                "deleted": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "deleted",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "created_at": {
+                    "allowNull": false,
+                    "field": "created_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updated_at": {
+                    "allowNull": false,
+                    "field": "updated_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "MerchantId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Merchants",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "MerchantId",
+                    "seqType": "Sequelize.UUID"
+                }
+            },
+            "indexes": []
+        }
+    },
+    "revision": 22
+}

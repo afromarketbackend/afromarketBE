@@ -1,0 +1,4303 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "AfroMarket",
+    "contact": {},
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:7000/afro-market/v1",
+      "variables": {}
+    },
+    {
+      "url": "https://afromarket-be.herokuapp.com/afro-market/v1",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/user/signup": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "user signup",
+        "operationId": "usersignup",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/usersignuprequest"
+                  },
+                  {
+                    "example": {
+                      "fullName": "bruce wayne",
+                      "email": "bruce@wayne.com",
+                      "password": "Batman0#"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "fullName": "bruce wayne",
+                "email": "bruce@wayne.com",
+                "password": "Batman0#"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/user/login": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "login user",
+        "operationId": "loginuser",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/loginuserrequest"
+                  },
+                  {
+                    "example": {
+                      "email": "babafemi.olasunmade@zummitafrica.com",
+                      "password": "Wolfgang9012#"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "email": "babafemi.olasunmade@zummitafrica.com",
+                "password": "Wolfgang9012#"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/user/logout": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "log out user",
+        "operationId": "logoutuser",
+        "parameters": [],
+        "responses": {
+          "default": {
+            "description": "",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/user/pass/forgot": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "forgot password",
+        "operationId": "forgotpassword",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/forgotpasswordrequest"
+                  },
+                  {
+                    "example": {
+                      "email": "babafemi.olasunmade@zummitafrica.com"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "email": "babafemi.olasunmade@zummitafrica.com"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/user/pass/reset": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "reset password",
+        "operationId": "resetpassword",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/resetpasswordrequest"
+                  },
+                  {
+                    "example": {
+                      "newPassword": "Wolfgang9012#",
+                      "otp": "179650"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "newPassword": "Wolfgang9012#",
+                "otp": "179650"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/merchant/signup": {
+      "post": {
+        "tags": [
+          "merchant"
+        ],
+        "summary": "merchant sign up",
+        "operationId": "merchantsignup",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/merchantsignuprequest"
+                  },
+                  {
+                    "example": {
+                      "business_name": "clark kent",
+                      "email": "clark@kent.com",
+                      "business_description": "daily plannet",
+                      "bank_verification_number": 1234567898,
+                      "cac_document": "cac documents",
+                      "password": "Superman0#",
+                      "phone_number": "0813456789"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "business_name": "clark kent",
+                "email": "clark@kent.com",
+                "business_description": "daily plannet",
+                "bank_verification_number": 1234567898,
+                "cac_document": "cac documents",
+                "password": "Superman0#",
+                "phone_number": "0813456789"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/merchant/login": {
+      "post": {
+        "tags": [
+          "merchant"
+        ],
+        "summary": "login merchant",
+        "operationId": "loginmerchant",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/loginmerchantrequest"
+                  },
+                  {
+                    "example": {
+                      "email": "clark@kent.com",
+                      "password": "Superman0#"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "email": "clark@kent.com",
+                "password": "Superman0#"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/merchant/upload-image": {
+      "patch": {
+        "tags": [
+          "merchant"
+        ],
+        "summary": "upload brand Image",
+        "operationId": "uploadbrandImage",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "image"
+                ],
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/product/upload": {
+      "post": {
+        "tags": [
+          "product"
+        ],
+        "summary": "upload product",
+        "operationId": "uploadproduct",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/uploadproductrequest"
+                  },
+                  {
+                    "example": {
+                      "name": "hp pavilion",
+                      "description": "2022 silver flat",
+                      "CategoryId": "10f44c53-4f7e-4bfa-8a01-a9b829ed2135",
+                      "quantity_available": 9,
+                      "price": 700000
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "name": "hp pavilion",
+                "description": "2022 silver flat",
+                "CategoryId": "10f44c53-4f7e-4bfa-8a01-a9b829ed2135",
+                "quantity_available": 9,
+                "price": 700000
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/product/remove/6": {
+      "post": {
+        "tags": [
+          "product"
+        ],
+        "summary": "removeProduct",
+        "operationId": "removeProduct",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/removeProductRequest"
+                  },
+                  {
+                    "example": {
+                      "name": "iphone",
+                      "description": "iphone 14 pro maax",
+                      "quantity_available": 10,
+                      "category": "electronics",
+                      "price": 1000
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "name": "iphone",
+                "description": "iphone 14 pro maax",
+                "quantity_available": 10,
+                "category": "electronics",
+                "price": 1000
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/product/1/upload-image": {
+      "patch": {
+        "tags": [
+          "product"
+        ],
+        "summary": "upload product image",
+        "operationId": "uploadproductimage",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "image"
+                ],
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/product/1/images-upload": {
+      "patch": {
+        "tags": [
+          "product"
+        ],
+        "summary": "upload images",
+        "operationId": "uploadimages",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "image"
+                ],
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/product/get-one/3": {
+      "get": {
+        "tags": [
+          "product"
+        ],
+        "summary": "get single product",
+        "operationId": "getsingleproduct",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/product/owned": {
+      "get": {
+        "tags": [
+          "product"
+        ],
+        "summary": "get single product owned by a merchant",
+        "operationId": "getsingleproductownedbyamerchant",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/product/get-all": {
+      "get": {
+        "tags": [
+          "product"
+        ],
+        "summary": "get all products",
+        "operationId": "getallproducts",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 10
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/product/my-all": {
+      "get": {
+        "tags": [
+          "product"
+        ],
+        "summary": "get my products by merchant",
+        "operationId": "getmyproductsbymerchant",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 10
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/product/1": {
+      "delete": {
+        "tags": [
+          "product"
+        ],
+        "summary": "removeProduct1",
+        "operationId": "removeProduct1",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://afromarket-be.herokuapp.com/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/order/create": {
+      "post": {
+        "tags": [
+          "order"
+        ],
+        "summary": "create order",
+        "operationId": "createorder",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/createorderrequest"
+                  },
+                  {
+                    "example": {
+                      "order_tray": [
+                        {
+                          "id": "7bd91bd6-1472-44d1-8447-3401c0d7bc72",
+                          "quantity_ordered": 1
+                        },
+                        {
+                          "id": "c99eb99f-c63e-4d10-b678-23d2b2abd742",
+                          "quantity_ordered": 1
+                        }
+                      ],
+                      "delivery_address": "1, afroworld africa to the world"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "order_tray": [
+                  {
+                    "id": "7bd91bd6-1472-44d1-8447-3401c0d7bc72",
+                    "quantity_ordered": 1
+                  },
+                  {
+                    "id": "c99eb99f-c63e-4d10-b678-23d2b2abd742",
+                    "quantity_ordered": 1
+                  }
+                ],
+                "delivery_address": "1, afroworld africa to the world"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/order/my-orders": {
+      "get": {
+        "tags": [
+          "order"
+        ],
+        "summary": "get my orders",
+        "operationId": "getmyorders",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/order/cancel/ae230861-3112-4850-a3ec-f4d366cd23eb": {
+      "patch": {
+        "tags": [
+          "order"
+        ],
+        "summary": "cancel an order",
+        "operationId": "cancelanorder",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/order/single/99a985de-0b49-4525-883a-776e2572ea21": {
+      "get": {
+        "tags": [
+          "order"
+        ],
+        "summary": "single order",
+        "operationId": "singleorder",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/admin/orders/all": {
+      "get": {
+        "tags": [
+          "order"
+        ],
+        "summary": "get all orders",
+        "operationId": "getallorders",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 10
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/admin/orders/active": {
+      "post": {
+        "tags": [
+          "order"
+        ],
+        "summary": "get all active orders",
+        "operationId": "getallactiveorders",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/getallactiveordersrequest"
+                  },
+                  {
+                    "example": {
+                      "startDate": "2022-09-01T15:45:50.000Z",
+                      "endDate": "2022-10-04T17:45:50.000Z"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "startDate": "2022-09-01T15:45:50.000Z",
+                "endDate": "2022-10-04T17:45:50.000Z"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/admin/orders/delivered": {
+      "post": {
+        "tags": [
+          "order"
+        ],
+        "summary": "get all delivered orders",
+        "operationId": "getalldeliveredorders",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 10
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/getalldeliveredordersrequest"
+                  },
+                  {
+                    "example": {
+                      "startDate": "2022-09-01T15:45:50.000Z",
+                      "endDate": "2022-10-30T17:45:50.000Z"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "startDate": "2022-09-01T15:45:50.000Z",
+                "endDate": "2022-10-30T17:45:50.000Z"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/admin/orders/disputed": {
+      "post": {
+        "tags": [
+          "order"
+        ],
+        "summary": "get all disputed orders",
+        "operationId": "getalldisputedorders",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 10
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/getalldisputedordersrequest"
+                  },
+                  {
+                    "example": {
+                      "startDate": "2022-09-01T15:45:50.000Z",
+                      "endDate": "2022-10-30T17:45:50.000Z"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "startDate": "2022-09-01T15:45:50.000Z",
+                "endDate": "2022-10-30T17:45:50.000Z"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/admin/orders/one/d7ee098c-0e46-4771-8bf7-402f2d9a0775": {
+      "get": {
+        "tags": [
+          "order"
+        ],
+        "summary": "get a single order",
+        "operationId": "getasingleorder",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/admin/orders/search": {
+      "post": {
+        "tags": [
+          "order"
+        ],
+        "summary": "search order",
+        "operationId": "searchorder",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/searchorderrequest"
+                  },
+                  {
+                    "example": {
+                      "search": "434"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "search": "434"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/order/single/ae230861-3112-4850-a3ec-f4d366cd23eb": {
+      "get": {
+        "tags": [
+          "order"
+        ],
+        "summary": "single order1",
+        "operationId": "singleorder1",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://afromarket-be.herokuapp.com/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/inventory/add-new/1efb8bcb-37f0-4051-9194-a8ba4490e48d": {
+      "post": {
+        "tags": [
+          "inventory"
+        ],
+        "summary": "add to inventory",
+        "operationId": "addtoinventory",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/addtoinventoryrequest"
+                  },
+                  {
+                    "example": {
+                      "price": 330000
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "price": 330000
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/inventory/single/12": {
+      "get": {
+        "tags": [
+          "inventory"
+        ],
+        "summary": "get single inventory",
+        "operationId": "getsingleinventory",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/inventory/my-all": {
+      "get": {
+        "tags": [
+          "inventory"
+        ],
+        "summary": "get all my inventories",
+        "operationId": "getallmyinventories",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 10
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/inventory/get-all": {
+      "get": {
+        "tags": [
+          "inventory"
+        ],
+        "summary": "get all inventories",
+        "operationId": "getallinventories",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 10
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/inventory/remove/11": {
+      "patch": {
+        "tags": [
+          "inventory"
+        ],
+        "summary": "remove product from inventory",
+        "operationId": "removeproductfrominventory",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/inventory/find": {
+      "post": {
+        "tags": [
+          "inventory"
+        ],
+        "summary": "search for inventory",
+        "operationId": "searchforinventory",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 2
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 4
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/searchforinventoryrequest"
+                  },
+                  {
+                    "example": {
+                      "search": "1"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "search": "1"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/dispute/create/435f5bc4-e9a5-4078-882b-95fb610e796c": {
+      "post": {
+        "tags": [
+          "dispute"
+        ],
+        "summary": "create dispute",
+        "operationId": "createdispute",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/createdisputerequest"
+                  },
+                  {
+                    "example": {
+                      "reason": "Wrong Order",
+                      "description": "fake product was delivered"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "reason": "Wrong Order",
+                "description": "fake product was delivered"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/dispute/dd100f32-f30a-4d3c-95f9-475d142c0c49/upload-image": {
+      "patch": {
+        "tags": [
+          "dispute"
+        ],
+        "summary": "upload disputed product image",
+        "operationId": "uploaddisputedproductimage",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "image"
+                ],
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/dispute/all": {
+      "get": {
+        "tags": [
+          "dispute"
+        ],
+        "summary": "get my disputes",
+        "operationId": "getmydisputes",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/admin/dispute/all": {
+      "get": {
+        "tags": [
+          "dispute"
+        ],
+        "summary": "get all disputes",
+        "operationId": "getalldisputes",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 10
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/admin/dispute/one/84eadf55-5a8b-4746-8ae2-b4a1e1c69270": {
+      "get": {
+        "tags": [
+          "dispute"
+        ],
+        "summary": "get a single dispute",
+        "operationId": "getasingledispute",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/admin/dispute/award/84eadf55-5a8b-4746-8ae2-b4a1e1c69270": {
+      "post": {
+        "tags": [
+          "dispute"
+        ],
+        "summary": "award dispute",
+        "operationId": "awarddispute",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "Resolved"
+            }
+          },
+          {
+            "name": "award",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "customer"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/cart/get_one/a11d615a-99d1-473c-bfe0-a2058a8e067f/a59489a9-e156-4f74-bf4a-6a82129ced58": {
+      "get": {
+        "tags": [
+          "ordered_item"
+        ],
+        "summary": "get single item in an order",
+        "operationId": "getsingleiteminanorder",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/cart/all_items/99a985de-0b49-4525-883a-776e2572ea21": {
+      "get": {
+        "tags": [
+          "ordered_item"
+        ],
+        "summary": "get all items in an order",
+        "operationId": "getallitemsinanorder",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/category/all": {
+      "get": {
+        "tags": [
+          "category"
+        ],
+        "summary": "get all categories",
+        "operationId": "getallcategories",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 10
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/category/new": {
+      "post": {
+        "tags": [
+          "category"
+        ],
+        "summary": "add new category",
+        "operationId": "addnewcategory",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/addnewcategoryrequest"
+                  },
+                  {
+                    "example": {
+                      "name": "furniture",
+                      "description": " upholsteries and asthetics"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "name": "furniture",
+                "description": " upholsteries and asthetics"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/category/one/28f1a676-7293-4f09-92b4-5789165e821c": {
+      "get": {
+        "tags": [
+          "category"
+        ],
+        "summary": "get one category by admin",
+        "operationId": "getonecategorybyadmin",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/category/find": {
+      "post": {
+        "tags": [
+          "category"
+        ],
+        "summary": "search for a category",
+        "operationId": "searchforacategory",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 10
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/searchforacategoryrequest"
+                  },
+                  {
+                    "example": {
+                      "search": "o"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "search": "o"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/category/one/0782bc5b-4d23-4b8d-9572-052e694ad649": {
+      "get": {
+        "tags": [
+          "category"
+        ],
+        "summary": "get all products in a category",
+        "operationId": "getallproductsinacategory",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/admin/create": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "create Admin",
+        "operationId": "createAdmin",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/createAdminRequest"
+                  },
+                  {
+                    "example": {
+                      "fullName": "amadeus mozart",
+                      "email": "babafemi.olasunmade@zummitafrica.com",
+                      "password": "Wolfgang90#",
+                      "role": "super"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "fullName": "amadeus mozart",
+                "email": "babafemi.olasunmade@zummitafrica.com",
+                "password": "Wolfgang90#",
+                "role": "super"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/admin/login": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "login admin",
+        "operationId": "loginadmin",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/loginadminrequest"
+                  },
+                  {
+                    "example": {
+                      "email": "babafemi.olasunmade@zummitafrica.com",
+                      "password": "Wolfgang9012#"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "email": "babafemi.olasunmade@zummitafrica.com",
+                "password": "Wolfgang9012#"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/admin/pass/forgot": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "forgot password admin",
+        "operationId": "forgotpasswordadmin",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/forgotpasswordadminrequest"
+                  },
+                  {
+                    "example": {
+                      "email": "babafemi.olasunmade@zummitafrica.com"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "email": "babafemi.olasunmade@zummitafrica.com"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/admin/pass/reset": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "reset password admin",
+        "operationId": "resetpasswordadmin",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/resetpasswordadminrequest"
+                  },
+                  {
+                    "example": {
+                      "newPassword": "Wolfgang9012#",
+                      "otp": "292738"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "newPassword": "Wolfgang9012#",
+                "otp": "292738"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/admin/logout": {
+      "get": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "log out admin",
+        "operationId": "logoutadmin",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/admin/products/get-all": {
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "summary": "get all products",
+        "operationId": "Getgetallproducts",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 10
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/admin/products/one/b08c8603-07f0-4df4-84c5-9abccf1e16e0": {
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "summary": "get a product",
+        "operationId": "getaproduct",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "products"
+        ],
+        "summary": "flag a product",
+        "operationId": "flagaproduct",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/admin/user/all": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "get all users",
+        "operationId": "getallusers",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 10
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/admin/user/new": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "get new users",
+        "operationId": "getnewusers",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 10
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/getnewusersrequest"
+                  },
+                  {
+                    "example": {
+                      "startDate": "2022-10-01T15:45:50.000Z",
+                      "endDate": "2022-10-03T17:45:50.000Z"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "startDate": "2022-10-01T15:45:50.000Z",
+                "endDate": "2022-10-03T17:45:50.000Z"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/admin/user/one/ef7fc3c4-85c2-4dda-8f79-ab2ce4b7252f": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "get a single user",
+        "operationId": "getasingleuser",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "users"
+        ],
+        "summary": "flag a user",
+        "operationId": "flagauser",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/admin/user/search": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "search user",
+        "operationId": "searchuser",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/searchuserrequest"
+                  },
+                  {
+                    "example": {
+                      "search": "baba"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "search": "baba"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/admin/home": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "HomePage Admin",
+        "operationId": "HomePageAdmin",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 10
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/HomePageAdminRequest"
+                  },
+                  {
+                    "example": {
+                      "totalOrders": {
+                        "startDate": "2022-09-01T15:45:50.000Z",
+                        "endDate": "2022-10-30T17:45:50.000Z"
+                      },
+                      "activeOrders": {
+                        "startDate": "2022-09-01T15:45:50.000Z",
+                        "endDate": "2022-09-30T17:45:50.000Z"
+                      },
+                      "deliveredOrders": {
+                        "startDate": "2022-09-01T15:45:50.000Z",
+                        "endDate": "2022-09-30T17:45:50.000Z"
+                      },
+                      "disputedOrders": {
+                        "startDate": "2022-09-01T15:45:50.000Z",
+                        "endDate": "2022-09-30T17:45:50.000Z"
+                      },
+                      "newUsers": {
+                        "startDate": "2022-09-01T15:45:50.000Z",
+                        "endDate": "2022-09-30T17:45:50.000Z"
+                      },
+                      "newVendors": {
+                        "startDate": "2022-09-01T15:45:50.000Z",
+                        "endDate": "2022-09-30T17:45:50.000Z"
+                      }
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "totalOrders": {
+                  "startDate": "2022-09-01T15:45:50.000Z",
+                  "endDate": "2022-10-30T17:45:50.000Z"
+                },
+                "activeOrders": {
+                  "startDate": "2022-09-01T15:45:50.000Z",
+                  "endDate": "2022-09-30T17:45:50.000Z"
+                },
+                "deliveredOrders": {
+                  "startDate": "2022-09-01T15:45:50.000Z",
+                  "endDate": "2022-09-30T17:45:50.000Z"
+                },
+                "disputedOrders": {
+                  "startDate": "2022-09-01T15:45:50.000Z",
+                  "endDate": "2022-09-30T17:45:50.000Z"
+                },
+                "newUsers": {
+                  "startDate": "2022-09-01T15:45:50.000Z",
+                  "endDate": "2022-09-30T17:45:50.000Z"
+                },
+                "newVendors": {
+                  "startDate": "2022-09-01T15:45:50.000Z",
+                  "endDate": "2022-09-30T17:45:50.000Z"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/review/create/6381ab50-a9a0-49b6-ad87-67ae936c4afa": {
+      "post": {
+        "tags": [
+          "reviews"
+        ],
+        "summary": "add review",
+        "operationId": "addreview",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/addreviewrequest"
+                  },
+                  {
+                    "example": {
+                      "text": " looks authentic but naaah still the fake version",
+                      "rating": 5
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "text": " looks authentic but naaah still the fake version",
+                "rating": 5
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/review/product/6381ab50-a9a0-49b6-ad87-67ae936c4afa": {
+      "get": {
+        "tags": [
+          "reviews"
+        ],
+        "summary": "get reviews of a product",
+        "operationId": "getreviewsofaproduct",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 10
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/review/delete/02d37347-46be-4643-9f4e-76cd143a0f33": {
+      "patch": {
+        "tags": [
+          "reviews"
+        ],
+        "summary": "delete a review by user",
+        "operationId": "deleteareviewbyuser",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/deleteareviewbyuserrequest"
+                  },
+                  {
+                    "example": {
+                      "text": " looks authentic but naaah still the fake version",
+                      "rating": 2
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "text": " looks authentic but naaah still the fake version",
+                "rating": 2
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/payment/initiate": {
+      "post": {
+        "tags": [
+          "flw payment"
+        ],
+        "summary": "make payment",
+        "operationId": "makepayment",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/makepaymentrequest"
+                  },
+                  {
+                    "example": {
+                      "tx_ref": "9fcd0512-0209-493a-a6a0-6c741b560a71",
+                      "amount": 260000,
+                      "redirect_url": "https://dry-everglades-19950.herokuapp.com",
+                      "email": "babafemi.olasunmade@zummitafrica.com",
+                      "name": "amadeus mozart",
+                      "order_id": "90c4cc36-d3ab-45ea-9ee0-61b38072dd7d",
+                      "tracking_id": "AM244321WN"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "tx_ref": "9fcd0512-0209-493a-a6a0-6c741b560a71",
+                "amount": 260000,
+                "redirect_url": "https://dry-everglades-19950.herokuapp.com",
+                "email": "babafemi.olasunmade@zummitafrica.com",
+                "name": "amadeus mozart",
+                "order_id": "90c4cc36-d3ab-45ea-9ee0-61b38072dd7d",
+                "tracking_id": "AM244321WN"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/payment/confirm": {
+      "patch": {
+        "tags": [
+          "flw payment"
+        ],
+        "summary": "confirm payment",
+        "operationId": "confirmpayment",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "successful"
+            }
+          },
+          {
+            "name": "tx_ref",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "9fcd0512-0209-493a-a6a0-6c741b560a71"
+            }
+          },
+          {
+            "name": "transaction_id",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 3873038
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/confirmpaymentrequest"
+                  },
+                  {
+                    "example": {
+                      "tx_ref": "b5adecd7-825e-40db-bf5c-6ade97c30e1c",
+                      "amount": 260000,
+                      "redirect_url": "https://dry-everglades-19950.herokuapp.com/",
+                      "email": "babafemi.olasunmade@zummitafrica.com",
+                      "name": "amadeus mozart",
+                      "order_id": "18e32e84-4c97-4828-b0b2-5d4e76f108a6",
+                      "tracking_id": "AM599644TT"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "tx_ref": "b5adecd7-825e-40db-bf5c-6ade97c30e1c",
+                "amount": 260000,
+                "redirect_url": "https://dry-everglades-19950.herokuapp.com/",
+                "email": "babafemi.olasunmade@zummitafrica.com",
+                "name": "amadeus mozart",
+                "order_id": "18e32e84-4c97-4828-b0b2-5d4e76f108a6",
+                "tracking_id": "AM599644TT"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "http://localhost:7000/afro-market/v1",
+            "variables": {}
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "usersignuprequest": {
+        "title": "usersignuprequest",
+        "required": [
+          "fullName",
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "fullName": "bruce wayne",
+          "email": "bruce@wayne.com",
+          "password": "Batman0#"
+        }
+      },
+      "loginuserrequest": {
+        "title": "loginuserrequest",
+        "required": [
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "email": "babafemi.olasunmade@zummitafrica.com",
+          "password": "Wolfgang9012#"
+        }
+      },
+      "forgotpasswordrequest": {
+        "title": "forgotpasswordrequest",
+        "required": [
+          "email"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "email": "babafemi.olasunmade@zummitafrica.com"
+        }
+      },
+      "resetpasswordrequest": {
+        "title": "resetpasswordrequest",
+        "required": [
+          "newPassword",
+          "otp"
+        ],
+        "type": "object",
+        "properties": {
+          "newPassword": {
+            "type": "string"
+          },
+          "otp": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "newPassword": "Wolfgang9012#",
+          "otp": "179650"
+        }
+      },
+      "merchantsignuprequest": {
+        "title": "merchantsignuprequest",
+        "required": [
+          "business_name",
+          "email",
+          "business_description",
+          "bank_verification_number",
+          "cac_document",
+          "password",
+          "phone_number"
+        ],
+        "type": "object",
+        "properties": {
+          "business_name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "business_description": {
+            "type": "string"
+          },
+          "bank_verification_number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cac_document": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "phone_number": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "business_name": "clark kent",
+          "email": "clark@kent.com",
+          "business_description": "daily plannet",
+          "bank_verification_number": 1234567898,
+          "cac_document": "cac documents",
+          "password": "Superman0#",
+          "phone_number": "0813456789"
+        }
+      },
+      "loginmerchantrequest": {
+        "title": "loginmerchantrequest",
+        "required": [
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "email": "clark@kent.com",
+          "password": "Superman0#"
+        }
+      },
+      "uploadproductrequest": {
+        "title": "uploadproductrequest",
+        "required": [
+          "name",
+          "description",
+          "CategoryId",
+          "quantity_available",
+          "price"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "CategoryId": {
+            "type": "string"
+          },
+          "quantity_available": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "price": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "name": "hp pavilion",
+          "description": "2022 silver flat",
+          "CategoryId": "10f44c53-4f7e-4bfa-8a01-a9b829ed2135",
+          "quantity_available": 9,
+          "price": 700000
+        }
+      },
+      "removeProductRequest": {
+        "title": "removeProductRequest",
+        "required": [
+          "name",
+          "description",
+          "quantity_available",
+          "category",
+          "price"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "quantity_available": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "category": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "name": "iphone",
+          "description": "iphone 14 pro maax",
+          "quantity_available": 10,
+          "category": "electronics",
+          "price": 1000
+        }
+      },
+      "createorderrequest": {
+        "title": "createorderrequest",
+        "required": [
+          "order_tray",
+          "delivery_address"
+        ],
+        "type": "object",
+        "properties": {
+          "order_tray": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderTray"
+            },
+            "description": ""
+          },
+          "delivery_address": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "order_tray": [
+            {
+              "id": "7bd91bd6-1472-44d1-8447-3401c0d7bc72",
+              "quantity_ordered": 1
+            },
+            {
+              "id": "c99eb99f-c63e-4d10-b678-23d2b2abd742",
+              "quantity_ordered": 1
+            }
+          ],
+          "delivery_address": "1, afroworld africa to the world"
+        }
+      },
+      "OrderTray": {
+        "title": "OrderTray",
+        "required": [
+          "id",
+          "quantity_ordered"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "quantity_ordered": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "id": "7bd91bd6-1472-44d1-8447-3401c0d7bc72",
+          "quantity_ordered": 1
+        }
+      },
+      "addtoinventoryrequest": {
+        "title": "addtoinventoryrequest",
+        "required": [
+          "price"
+        ],
+        "type": "object",
+        "properties": {
+          "price": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "price": 330000
+        }
+      },
+      "searchforinventoryrequest": {
+        "title": "searchforinventoryrequest",
+        "required": [
+          "search"
+        ],
+        "type": "object",
+        "properties": {
+          "search": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "search": "1"
+        }
+      },
+      "createdisputerequest": {
+        "title": "createdisputerequest",
+        "required": [
+          "reason",
+          "description"
+        ],
+        "type": "object",
+        "properties": {
+          "reason": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "reason": "Wrong Order",
+          "description": "fake product was delivered"
+        }
+      },
+      "addnewcategoryrequest": {
+        "title": "addnewcategoryrequest",
+        "required": [
+          "name",
+          "description"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "furniture",
+          "description": " upholsteries and asthetics"
+        }
+      },
+      "searchforacategoryrequest": {
+        "title": "searchforacategoryrequest",
+        "required": [
+          "search"
+        ],
+        "type": "object",
+        "properties": {
+          "search": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "search": "o"
+        }
+      },
+      "createAdminRequest": {
+        "title": "createAdminRequest",
+        "required": [
+          "fullName",
+          "email",
+          "password",
+          "role"
+        ],
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "fullName": "amadeus mozart",
+          "email": "babafemi.olasunmade@zummitafrica.com",
+          "password": "Wolfgang90#",
+          "role": "super"
+        }
+      },
+      "loginadminrequest": {
+        "title": "loginadminrequest",
+        "required": [
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "email": "babafemi.olasunmade@zummitafrica.com",
+          "password": "Wolfgang9012#"
+        }
+      },
+      "forgotpasswordadminrequest": {
+        "title": "forgotpasswordadminrequest",
+        "required": [
+          "email"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "email": "babafemi.olasunmade@zummitafrica.com"
+        }
+      },
+      "resetpasswordadminrequest": {
+        "title": "resetpasswordadminrequest",
+        "required": [
+          "newPassword",
+          "otp"
+        ],
+        "type": "object",
+        "properties": {
+          "newPassword": {
+            "type": "string"
+          },
+          "otp": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "newPassword": "Wolfgang9012#",
+          "otp": "292738"
+        }
+      },
+      "getallactiveordersrequest": {
+        "title": "getallactiveordersrequest",
+        "required": [
+          "startDate",
+          "endDate"
+        ],
+        "type": "object",
+        "properties": {
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "startDate": "2022-09-01T15:45:50.000Z",
+          "endDate": "2022-10-04T17:45:50.000Z"
+        }
+      },
+      "getalldeliveredordersrequest": {
+        "title": "getalldeliveredordersrequest",
+        "required": [
+          "startDate",
+          "endDate"
+        ],
+        "type": "object",
+        "properties": {
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "startDate": "2022-09-01T15:45:50.000Z",
+          "endDate": "2022-10-30T17:45:50.000Z"
+        }
+      },
+      "getalldisputedordersrequest": {
+        "title": "getalldisputedordersrequest",
+        "required": [
+          "startDate",
+          "endDate"
+        ],
+        "type": "object",
+        "properties": {
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "startDate": "2022-09-01T15:45:50.000Z",
+          "endDate": "2022-10-30T17:45:50.000Z"
+        }
+      },
+      "searchorderrequest": {
+        "title": "searchorderrequest",
+        "required": [
+          "search"
+        ],
+        "type": "object",
+        "properties": {
+          "search": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "search": "434"
+        }
+      },
+      "getnewusersrequest": {
+        "title": "getnewusersrequest",
+        "required": [
+          "startDate",
+          "endDate"
+        ],
+        "type": "object",
+        "properties": {
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "startDate": "2022-10-01T15:45:50.000Z",
+          "endDate": "2022-10-03T17:45:50.000Z"
+        }
+      },
+      "searchuserrequest": {
+        "title": "searchuserrequest",
+        "required": [
+          "search"
+        ],
+        "type": "object",
+        "properties": {
+          "search": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "search": "baba"
+        }
+      },
+      "searchorderCopyRequest": {
+        "title": "searchorderCopyRequest",
+        "required": [
+          "search"
+        ],
+        "type": "object",
+        "properties": {
+          "search": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "search": "434"
+        }
+      },
+      "HomePageAdminRequest": {
+        "title": "HomePageAdminRequest",
+        "required": [
+          "totalOrders",
+          "activeOrders",
+          "deliveredOrders",
+          "disputedOrders",
+          "newUsers",
+          "newVendors"
+        ],
+        "type": "object",
+        "properties": {
+          "totalOrders": {
+            "$ref": "#/components/schemas/TotalOrders"
+          },
+          "activeOrders": {
+            "$ref": "#/components/schemas/ActiveOrders"
+          },
+          "deliveredOrders": {
+            "$ref": "#/components/schemas/DeliveredOrders"
+          },
+          "disputedOrders": {
+            "$ref": "#/components/schemas/DisputedOrders"
+          },
+          "newUsers": {
+            "$ref": "#/components/schemas/NewUsers"
+          },
+          "newVendors": {
+            "$ref": "#/components/schemas/NewVendors"
+          }
+        },
+        "example": {
+          "totalOrders": {
+            "startDate": "2022-09-01T15:45:50.000Z",
+            "endDate": "2022-10-30T17:45:50.000Z"
+          },
+          "activeOrders": {
+            "startDate": "2022-09-01T15:45:50.000Z",
+            "endDate": "2022-09-30T17:45:50.000Z"
+          },
+          "deliveredOrders": {
+            "startDate": "2022-09-01T15:45:50.000Z",
+            "endDate": "2022-09-30T17:45:50.000Z"
+          },
+          "disputedOrders": {
+            "startDate": "2022-09-01T15:45:50.000Z",
+            "endDate": "2022-09-30T17:45:50.000Z"
+          },
+          "newUsers": {
+            "startDate": "2022-09-01T15:45:50.000Z",
+            "endDate": "2022-09-30T17:45:50.000Z"
+          },
+          "newVendors": {
+            "startDate": "2022-09-01T15:45:50.000Z",
+            "endDate": "2022-09-30T17:45:50.000Z"
+          }
+        }
+      },
+      "TotalOrders": {
+        "title": "TotalOrders",
+        "required": [
+          "startDate",
+          "endDate"
+        ],
+        "type": "object",
+        "properties": {
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "startDate": "2022-09-01T15:45:50.000Z",
+          "endDate": "2022-10-30T17:45:50.000Z"
+        }
+      },
+      "ActiveOrders": {
+        "title": "ActiveOrders",
+        "required": [
+          "startDate",
+          "endDate"
+        ],
+        "type": "object",
+        "properties": {
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "startDate": "2022-09-01T15:45:50.000Z",
+          "endDate": "2022-09-30T17:45:50.000Z"
+        }
+      },
+      "DeliveredOrders": {
+        "title": "DeliveredOrders",
+        "required": [
+          "startDate",
+          "endDate"
+        ],
+        "type": "object",
+        "properties": {
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "startDate": "2022-09-01T15:45:50.000Z",
+          "endDate": "2022-09-30T17:45:50.000Z"
+        }
+      },
+      "DisputedOrders": {
+        "title": "DisputedOrders",
+        "required": [
+          "startDate",
+          "endDate"
+        ],
+        "type": "object",
+        "properties": {
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "startDate": "2022-09-01T15:45:50.000Z",
+          "endDate": "2022-09-30T17:45:50.000Z"
+        }
+      },
+      "NewUsers": {
+        "title": "NewUsers",
+        "required": [
+          "startDate",
+          "endDate"
+        ],
+        "type": "object",
+        "properties": {
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "startDate": "2022-09-01T15:45:50.000Z",
+          "endDate": "2022-09-30T17:45:50.000Z"
+        }
+      },
+      "NewVendors": {
+        "title": "NewVendors",
+        "required": [
+          "startDate",
+          "endDate"
+        ],
+        "type": "object",
+        "properties": {
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "startDate": "2022-09-01T15:45:50.000Z",
+          "endDate": "2022-09-30T17:45:50.000Z"
+        }
+      },
+      "addreviewrequest": {
+        "title": "addreviewrequest",
+        "required": [
+          "text",
+          "rating"
+        ],
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "rating": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "text": " looks authentic but naaah still the fake version",
+          "rating": 5
+        }
+      },
+      "deleteareviewbyuserrequest": {
+        "title": "deleteareviewbyuserrequest",
+        "required": [
+          "text",
+          "rating"
+        ],
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "rating": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "text": " looks authentic but naaah still the fake version",
+          "rating": 2
+        }
+      },
+      "makepaymentrequest": {
+        "title": "makepaymentrequest",
+        "required": [
+          "tx_ref",
+          "amount",
+          "redirect_url",
+          "email",
+          "name",
+          "order_id",
+          "tracking_id"
+        ],
+        "type": "object",
+        "properties": {
+          "tx_ref": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "redirect_url": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "order_id": {
+            "type": "string"
+          },
+          "tracking_id": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "tx_ref": "9fcd0512-0209-493a-a6a0-6c741b560a71",
+          "amount": 260000,
+          "redirect_url": "https://dry-everglades-19950.herokuapp.com",
+          "email": "babafemi.olasunmade@zummitafrica.com",
+          "name": "amadeus mozart",
+          "order_id": "90c4cc36-d3ab-45ea-9ee0-61b38072dd7d",
+          "tracking_id": "AM244321WN"
+        }
+      },
+      "confirmpaymentrequest": {
+        "title": "confirmpaymentrequest",
+        "required": [
+          "tx_ref",
+          "amount",
+          "redirect_url",
+          "email",
+          "name",
+          "order_id",
+          "tracking_id"
+        ],
+        "type": "object",
+        "properties": {
+          "tx_ref": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "redirect_url": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "order_id": {
+            "type": "string"
+          },
+          "tracking_id": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "tx_ref": "b5adecd7-825e-40db-bf5c-6ade97c30e1c",
+          "amount": 260000,
+          "redirect_url": "https://dry-everglades-19950.herokuapp.com/",
+          "email": "babafemi.olasunmade@zummitafrica.com",
+          "name": "amadeus mozart",
+          "order_id": "18e32e84-4c97-4828-b0b2-5d4e76f108a6",
+          "tracking_id": "AM599644TT"
+        }
+      },
+      "merchantsignuprequest1": {
+        "title": "merchantsignuprequest1",
+        "required": [
+          "fullName",
+          "email",
+          "password",
+          "phone_number"
+        ],
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "phone_number": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "fullName": "bruce banner",
+          "email": "bruce@banner.com",
+          "password": "thehulk",
+          "phone_number": "0812345678"
+        }
+      },
+      "uploadproductrequest1": {
+        "title": "uploadproductrequest1",
+        "required": [
+          "name",
+          "description",
+          "quantity_available",
+          "category",
+          "price"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "quantity_available": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "category": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "name": "ps5",
+          "description": "playstation 5",
+          "quantity_available": 5,
+          "category": "electronics",
+          "price": 100000
+        }
+      },
+      "createorderrequest1": {
+        "title": "createorderrequest1",
+        "required": [
+          "order_tray"
+        ],
+        "type": "object",
+        "properties": {
+          "order_tray": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderTray1"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "order_tray": [
+            {
+              "id": 1,
+              "quantity_ordered": 1
+            },
+            {
+              "id": 3,
+              "quantity_ordered": 3
+            }
+          ]
+        }
+      },
+      "OrderTray1": {
+        "title": "OrderTray1",
+        "required": [
+          "id",
+          "quantity_ordered"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "quantity_ordered": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "id": 1,
+          "quantity_ordered": 1
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [],
+  "tags": [
+    {
+      "name": "user"
+    },
+    {
+      "name": "merchant"
+    },
+    {
+      "name": "product"
+    },
+    {
+      "name": "order"
+    },
+    {
+      "name": "inventory"
+    },
+    {
+      "name": "dispute"
+    },
+    {
+      "name": "ordered_item"
+    },
+    {
+      "name": "category"
+    },
+    {
+      "name": "auth"
+    },
+    {
+      "name": "products"
+    },
+    {
+      "name": "users"
+    },
+    {
+      "name": "admin"
+    },
+    {
+      "name": "reviews"
+    },
+    {
+      "name": "flw payment"
+    }
+  ]
+}
