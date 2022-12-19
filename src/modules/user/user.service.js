@@ -93,7 +93,6 @@ exports.loginUser = async(user, data) => {
             {where: {id: user.id}}
         )
         const loginUser = await User.findOne({
-            attributes:['email','fullname', 'id', 'refreshTokens', 'phone_number', 'delivery_address', 'avatar'],
             where: {
                 id:user.id,
                 

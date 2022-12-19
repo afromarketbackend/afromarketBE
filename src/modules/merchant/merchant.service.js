@@ -132,7 +132,6 @@ exports.loginMerchant = async(user, data) => {
             {where: {id: user.id, deleted: false}}
         )
         const loginMerchant = await Merchant.findOne({
-            attributes:['email','business_name', 'id', 'phone_number'],
             where: {id:user.id, deleted: false}
         })
 
