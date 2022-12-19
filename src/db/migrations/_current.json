@@ -372,6 +372,10 @@
                     "field": "bank_verification_number",
                     "seqType": "Sequelize.INTEGER"
                 },
+                "bvn": {
+                    "field": "bvn",
+                    "seqType": "Sequelize.STRING"
+                },
                 "cac_document": {
                     "field": "cac_document",
                     "seqType": "Sequelize.STRING"
@@ -426,6 +430,13 @@
                     },
                     "field": "deleted",
                     "seqType": "Sequelize.BOOLEAN"
+                },
+                "user_type": {
+                    "defaultValue": {
+                        "value": "user"
+                    },
+                    "field": "user_type",
+                    "seqType": "Sequelize.ENUM('user', 'merchant')"
                 },
                 "created_at": {
                     "allowNull": false,
@@ -1310,6 +1321,13 @@
                     "field": "delivery_address",
                     "seqType": "Sequelize.STRING"
                 },
+                "user_type": {
+                    "defaultValue": {
+                        "value": "user"
+                    },
+                    "field": "user_type",
+                    "seqType": "Sequelize.ENUM('user', 'merchant')"
+                },
                 "deleted": {
                     "defaultValue": {
                         "value": false
@@ -1508,5 +1526,5 @@
             "indexes": []
         }
     },
-    "revision": 23
+    "revision": 25
 }

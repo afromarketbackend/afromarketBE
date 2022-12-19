@@ -8,13 +8,22 @@ const KEYS = require("./common/config/keys");
 const createError = require("./common/helpers/createError");
 const { RESPONSE } = require("./common/constants/response");
 const { HTTP } = require("./common/constants/http");
+const http = require("http")
+const socketio = require("socket.io")
+
 // const swaggerUi = require('swagger-ui-express')
 // const swaggerDoc = require('../swagger.json');
 
 const models = require("./db/models")
 const { Op, QueryTypes } = require("sequelize");
 const app = express();
+const server = http.createServer(app)
 
+//Initialize socket
+const io = socketio(server).sockets
+
+//socket middleware
+require('./common/middlewares/socket')
 app.disable("x-powered-by");
 
 app.use(cors());

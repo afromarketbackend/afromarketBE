@@ -372,6 +372,10 @@
                     "field": "bank_verification_number",
                     "seqType": "Sequelize.INTEGER"
                 },
+                "bvn": {
+                    "field": "bvn",
+                    "seqType": "Sequelize.STRING"
+                },
                 "cac_document": {
                     "field": "cac_document",
                     "seqType": "Sequelize.STRING"
@@ -1347,11 +1351,11 @@
                     "field": "text",
                     "seqType": "Sequelize.STRING"
                 },
-                "available_balace": {
+                "available_balance": {
                     "defaultValue": {
                         "value": 0
                     },
-                    "field": "available_balace",
+                    "field": "available_balance",
                     "seqType": "Sequelize.FLOAT"
                 },
                 "previous_balance": {
@@ -1508,5 +1512,5 @@
             "indexes": []
         }
     },
-    "revision": 22
+    "revision": 24
 }

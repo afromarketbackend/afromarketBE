@@ -42,6 +42,9 @@ module.exports = (sequelize, DataTypes) =>{
       bank_verification_number:{
         type: DataTypes.INTEGER,
       },
+      bvn:{
+        type: DataTypes.STRING,
+      },
       cac_document:{
         type: DataTypes.STRING,
       },
@@ -79,7 +82,12 @@ module.exports = (sequelize, DataTypes) =>{
       deleted:{
         type: DataTypes.BOOLEAN,
         defaultValue: false
-      }
+      },
+      user_type: {
+        type: DataTypes.ENUM,
+        values: ['user', 'merchant'],
+        defaultValue: 'user'
+      },
   
     },
     {

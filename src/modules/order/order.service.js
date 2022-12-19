@@ -61,7 +61,6 @@ exports.createOrder = async (user, data) =>{
                 }
             } else{
                 const product = await Product.findOne({where:{id: item.id}})
-                console.log(product);
                 if(Number(product.quantity_available) < Number(item.quantity_ordered) ){
                     return{
                         error: true,

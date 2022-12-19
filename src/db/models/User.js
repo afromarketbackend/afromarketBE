@@ -48,6 +48,11 @@ module.exports = (sequelize, DataTypes) =>{
       delivery_address:{
         type: DataTypes.STRING
       },
+      user_type: {
+        type: DataTypes.ENUM,
+        values: ['user', 'merchant'],
+        defaultValue: 'user'
+      },
       deleted:{
         type: DataTypes.BOOLEAN,
         defaultValue: false

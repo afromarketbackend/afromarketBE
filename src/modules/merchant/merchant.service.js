@@ -61,7 +61,8 @@ exports.registerMerchant = async (data) =>{
                 bank_name: bank_name? bank_name: null,
                 account_name: account_name? account_name: null,
                 account_number: account_number? account_number: null,
-                bank_verification_number: bank_verification_number? bank_verification_number: null,
+                bvn: bank_verification_number? String(bank_verification_number): null,
+                user_type:"merchant"
 
             },
             {raw: true}
