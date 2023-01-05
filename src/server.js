@@ -23,7 +23,7 @@ const server = http.createServer(app)
 const io = socketio(server).sockets
 
 //socket middleware
-require('./common/middlewares/socket')
+require('./common/middlewares/socket')(io)
 app.disable("x-powered-by");
 
 app.use(cors());

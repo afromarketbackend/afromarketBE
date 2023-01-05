@@ -1,4 +1,5 @@
 const {Router} = require('express')
+const socketIo = require('../../common/middlewares/socket')
 const { authorize } = require('../../common/middlewares/authorize')
 const { authMerchLogin } = require('../../common/middlewares/authorizeLogin')
 const validateRequest = require('../../common/middlewares/validateRequest')
@@ -8,12 +9,12 @@ registerMerchantController,
 loginMerchantController,
 getAllMerchantsController,
 viewAMerchantController
-} = require('./merchant.controller')
+} = require('./merchant.controller') 
 const {
  registerMerchantSchema,
  loginMerchantSchema,
  paginateSchema,
- modelIdSchema,
+ modelIdSchema, 
 } = require('./merchant.schema')
 
 const router = Router()
