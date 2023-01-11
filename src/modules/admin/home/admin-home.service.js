@@ -32,8 +32,8 @@ exports.adminHome = async(data)=>{
                 where:{
                     created_at:{
                         [Op.between]:[
-                            totalOrders?.startDate?totalOrders?.startDate:startOfDay,
-                            totalOrders?.endDate?totalOrders?.endDate:endOfDay
+                            totalOrders?.startDate?new Date(totalOrders?.startDate):startOfDay,
+                            totalOrders?.endDate?new Date(totalOrders?.endDate):endOfDay
                         ]
                     }
                 }
@@ -42,8 +42,8 @@ exports.adminHome = async(data)=>{
                 where:{  
                     created_at:{
                         [Op.between]:[
-                            activeOrders.startDate?activeOrders.startDate:startOfDay,
-                            activeOrders.endDate?activeOrders.endDate:endOfDay
+                            activeOrders?.startDate?new Date(activeOrders.startDate):startOfDay,
+                            activeOrders?.endDate?new Date(activeOrders.endDate):endOfDay
                         ]
                     },
                     status:"active"
@@ -54,8 +54,8 @@ exports.adminHome = async(data)=>{
                 where:{
                     created_at:{
                         [Op.between]:[
-                            deliveredOrders?.startDate?deliveredOrders?.startDate:startOfDay,
-                            deliveredOrders?.endDate?deliveredOrders?.endDate:endOfDay
+                            deliveredOrders?.startDate?new Date(deliveredOrders?.startDate):startOfDay,
+                            deliveredOrders?.endDate?new Date(deliveredOrders?.endDate):endOfDay
                         ]
                     },
                     status:"delivered"
@@ -66,8 +66,8 @@ exports.adminHome = async(data)=>{
                 where:{
                     created_at:{
                         [Op.between]:[
-                            disputedOrders?.startDate?disputedOrders?.startDate:startOfDay,
-                            disputedOrders?.endDate?disputedOrders?.endDate:endOfDay
+                            disputedOrders?.startDate?new Date(disputedOrders?.startDate):startOfDay,
+                            disputedOrders?.endDate?new Date(disputedOrders?.endDate):endOfDay
                         ]
                     },
                     status:"disputed"
@@ -79,8 +79,8 @@ exports.adminHome = async(data)=>{
                     [Op.or]:[ 
                         {    
                             created_at:{[Op.between]:[
-                                newUsers?.startDate?newUsers?.startDate:startOfDay,
-                                newUsers?.endDate?newUsers?.endDate:endOfDay
+                                newUsers?.startDate?new Date(newUsers?.startDate):startOfDay,
+                                newUsers?.endDate?new Date(newUsers?.endDate):endOfDay
                             ]}
                             ,
                         deleted:false
@@ -94,8 +94,8 @@ exports.adminHome = async(data)=>{
                     [Op.or]:[ 
                         {    
                             created_at:{[Op.between]:[
-                                 newVendors?.startDate? newVendors?.startDate:startOfDay,
-                                 newVendors?.endDate? newVendors?.endDate:endOfDay
+                                 newVendors?.startDate?new Date( newVendors?.startDate):startOfDay,
+                                 newVendors?.endDate? new Date(newVendors?.endDate):endOfDay
                             ]}
                             ,
                         deleted:false

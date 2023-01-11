@@ -11,6 +11,7 @@ const {
 const {deliveryDate} = require('../../common/helpers/deliveryDate')
 const { uuid } = require('uuidv4')
 const {initiateWithdrawal} = require('../withdrawal/withdrawal.service')
+const {getPaginatedRecords} = require('../../common/helpers/paginate')
 
 const {
     sequelize,
@@ -439,6 +440,41 @@ exports.getMyOrders = async (user) =>{
         
     }
 }
+
+
+exports.getMyOrdersByStatus = async (payload) =>{
+    try {
+
+        const {user, limit, page, status} = payload
+
+        const paginatedOrders = await getPaginatedRecords(Order, {
+            limit: limit?Number(limit):10,
+            page: page?Number(page): 1,
+            data: {UserId: user.id, status: status},
+            exclusions: ['TrakckingId']
+        })
+
+        return {
+            error: false,
+            message: `${status} Orders Retrieved successfully`,
+            data: {
+               ordersByStatus: paginatedOrders,
+               pagination: paginatedOrders.perPage
+            }
+        }
+
+    } catch (error) {
+        console.log(error)
+        return{
+            error: true,
+            message: error.message|| `Unable to retrieve ${status} orders at the moment`,
+            data: null
+        }
+        
+    }
+}
+
+
 
 exports.getSingleOrder = async (user, data) =>{
     try {

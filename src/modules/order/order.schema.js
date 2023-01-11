@@ -20,3 +20,12 @@ exports.singleOrderSchema = Joi.object().keys({
 exports.trackOrderSchema = Joi.object().keys({
     tracking_id: Joi.string().required(),
 })
+
+
+exports.filterSchema = Joi.object().keys({
+    page: Joi.number().positive().optional(),
+    limit: Joi.number().positive().optional(),
+    status: Joi.string().optional(),
+})
+
+    

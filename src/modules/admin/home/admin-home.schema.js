@@ -51,3 +51,31 @@ exports.adminHomeSchema = Joi.object().keys({
         endDate: Joi.date().format('YYYY-MM-DDTHH:mm:SS.sssZ').optional(),
     }).optional(),
 })
+
+exports.adminHomeSchema = Joi.object().keys({
+    totalOrders: Joi.object().keys({
+        // startDate: Joi.string().optional(),
+        startDate: Joi.string().optional(),
+        endDate: Joi.string().optional(),
+    }).optional(),
+    activeOrders: Joi.object().keys({
+        startDate: Joi.string().optional(),
+        endDate: Joi.string().optional(),
+    }).optional(),
+    deliveredOrders: Joi.object().keys({
+        startDate: Joi.string().optional(),
+        endDate: Joi.string().optional(),
+    }),
+    disputedOrders: Joi.object().keys({
+        startDate: Joi.string().optional(),
+        endDate: Joi.string().optional(),
+    }).optional(),
+    newUsers: Joi.object().keys({
+        startDate: Joi.string().optional(),
+        endDate: Joi.string().optional(),
+    }).optional(),
+    newVendors: Joi.object().keys({
+        startDate: Joi.string().optional(),
+        endDate: Joi.string().optional(),
+    }).optional(),
+})

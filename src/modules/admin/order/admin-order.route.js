@@ -5,7 +5,7 @@ const {
     getAllOrdersController,
     getOneOrderController,
     searchOrderController,
-    getAllActiveOrdersController,
+    getAllOrdersByStatusController,
     getAllDeliveredOrdersController,
     getAllDisputedOrdersController
     
@@ -16,6 +16,7 @@ const {
     searchSchema,
     filterSchema
 } = require('./admin-order.schema')
+const { getAllOrdersBySatusAdmin } = require('./admin-order.service')
 const router = Router()
 
 router.get(
@@ -32,34 +33,18 @@ router.get(
     getOneOrderController
 )
 
-router.post(
+router.get(
     '/search',
-    validateRequest(searchSchema, "body"),
+    validateRequest(searchSchema, "query"),
     authorizeAdmin,
     searchOrderController
 )
 
-router.post(
-    '/active',
-    validateRequest(filterSchema, "body"),
-    validateRequest(getAllOrdersSchema, "query"),
+router.get(
+    '/by-status',
+    validateRequest(filterSchema, "query"),
     authorizeAdmin,
-    getAllActiveOrdersController
+    getAllOrdersByStatusController
 )
 
-router.post(
-    '/delivered',
-    validateRequest(filterSchema, "body"),
-    validateRequest(getAllOrdersSchema, "query"),
-    authorizeAdmin,
-    getAllDeliveredOrdersController
-)
-
-router.post(
-    '/disputed',
-    validateRequest(filterSchema, "body"),
-    validateRequest(getAllOrdersSchema, "query"),
-    authorizeAdmin,
-    getAllDisputedOrdersController
-)
 module.exports = router

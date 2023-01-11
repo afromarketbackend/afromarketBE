@@ -86,6 +86,36 @@ exports.getMyOrdersController = async (req, res, next) => {
     }
 }
 
+exports.getMyOrdersByStatusController = async (req, res, next) => {
+    try {
+        const {error, message, data} = await OrderService.getMyOrdersByStatus({
+            user: req.user,
+            limit: req.query.limit,
+            page: req.query.page,
+            status: req.query.status
+        })
+
+        if (error) {
+        return next(
+            createError(HTTP.BAD_REQUEST, [
+            {
+                status: RESPONSE.ERROR,
+                message,
+                statusCode:
+                data instanceof Error ? HTTP.SERVER_ERROR : HTTP.BAD_REQUEST,
+                data,
+            },
+            ])
+        );
+        }
+        return createResponse(message, data)(res, HTTP.CREATED);
+    } catch (error) {
+        console.error(error);
+
+        return next(createError.InternalServerError(error));
+    }
+}
+
 exports.singleOrderController = async (req, res, next) => {
     try {
         const {error, message, data} = await OrderService.getSingleOrder(

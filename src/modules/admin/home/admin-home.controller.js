@@ -6,7 +6,7 @@ const adminHomeService = require('./admin-home.service')
 
 exports.home = async (req, res, next) =>{
      try {
-        const {error, message, data} = await adminHomeService.adminHome(req.body)
+        const {error, message, data} = await adminHomeService.adminHome(req.query)
 
         if (error) {
         return next(

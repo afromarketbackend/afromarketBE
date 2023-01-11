@@ -4,6 +4,7 @@ const validateRequest = require('../../common/middlewares/validateRequest')
 const { 
 createOrderController,
 getMyOrdersController,
+getMyOrdersByStatusController,
 cancelOrderController,
 singleOrderController,
 trackMyOrderController
@@ -12,7 +13,8 @@ const {
  createOrderSchema,
  cancelOrderSchema,
  singleOrderSchema,
- trackOrderSchema
+ trackOrderSchema,
+ filterSchema
 } = require('./order.schema')
 
 const router = Router()
@@ -35,6 +37,13 @@ router.get(
     '/my-orders',
     authorize(),
     getMyOrdersController
+)
+
+router.get(
+    '/my-orders/by-status',
+    authorize(),
+    validateRequest(filterSchema, "query"),
+    getMyOrdersByStatusController
 )
 
 router.get(

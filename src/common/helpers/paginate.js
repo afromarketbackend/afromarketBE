@@ -35,7 +35,7 @@ exports.getPaginatedRecords = async (
         hasNext: page * limit < modelData,
         hasPrevious: page > 1,
         perPage: limit,
-        totalPages: Math.ceil(modelData / limit),
+        totalPages:(Number(modelData)> 0)? Math.ceil(modelData / limit): 1,
       };
     } catch (err) {
       console.log(err);

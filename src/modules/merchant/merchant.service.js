@@ -50,17 +50,17 @@ exports.registerMerchant = async (data) =>{
         }
         const newMerchant = await Merchant.create(
             {
-                business_name: business_name? business_name: null,
+                business_name: business_name? String(business_name).toLowerCase(): null,
                 business_description: business_description? business_description: null,
                 business_type: business_type? business_type: "public limited company",
-                tax_id_number: tax_id_number? tax_id_number: null,
-                email: email? email: null,
+                tax_id_number: tax_id_number? String(tax_id_number): null,
+                email: email? String(email).toLowerCase(): null,
                 password: inputedPassword? password: null,
-                phone_number: phone_number? phone_number: null,
+                phone_number: phone_number? String(phone_number): null,
                 address: address? address: null,
                 bank_name: bank_name? bank_name: null,
-                account_name: account_name? account_name: null,
-                account_number: account_number? account_number: null,
+                account_name: account_name? String(account_name).toLowerCase(): null,
+                account_number: account_number? String(account_number).toLowerCase(): null,
                 bvn: bank_verification_number? String(bank_verification_number): null,
                 user_type:"merchant"
 

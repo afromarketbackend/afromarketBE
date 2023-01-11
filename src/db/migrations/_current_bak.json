@@ -82,6 +82,11 @@
                     "field": "id",
                     "seqType": "Sequelize.UUID"
                 },
+                "roomID": {
+                    "unique": true,
+                    "field": "roomID",
+                    "seqType": "Sequelize.UUID"
+                },
                 "receiverEmail": {
                     "field": "receiverEmail",
                     "seqType": "Sequelize.STRING"
@@ -503,6 +508,11 @@
                         "value": "Sequelize.UUIDV4"
                     },
                     "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "roomID": {
+                    "unique": true,
+                    "field": "roomID",
                     "seqType": "Sequelize.UUID"
                 },
                 "receiverEmail": {
@@ -1612,5 +1622,5 @@
             "indexes": []
         }
     },
-    "revision": 27
+    "revision": 28
 }

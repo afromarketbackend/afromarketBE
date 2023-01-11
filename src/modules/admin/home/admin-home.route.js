@@ -5,10 +5,10 @@ const adminHomeController = require('./admin-home.controller')
 const { adminHomeSchema } = require('./admin-home.schema')
 const router = Router()
 
-router.post(
+router.get(
     '/home',
     authorizeAdmin,
-    validateRequest(adminHomeSchema, "body"),
+    validateRequest(adminHomeSchema, "query"),
     adminHomeController.home
 
 )

@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) =>{
         type: DataTypes.STRING,
       },
       bank_verification_number:{
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
       },
       bvn:{
         type: DataTypes.STRING,
@@ -49,7 +49,7 @@ module.exports = (sequelize, DataTypes) =>{
         type: DataTypes.STRING,
       },
       tax_id_number:{
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       brand_image:{
         type: DataTypes.STRING

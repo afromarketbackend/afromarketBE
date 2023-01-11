@@ -15,6 +15,9 @@ exports.searchSchema = Joi.object().keys({
     search: Joi.string().required(),
 })
 exports.filterSchema = Joi.object().keys({
-    startDate: Joi.string().required(),
-    endDate: Joi.string().required(),
+    page: Joi.number().positive().optional(),
+    limit: Joi.number().positive().optional(),
+    startDate: Joi.string().optional(),
+    endDate: Joi.string().optional(),
+    status: Joi.string().optional(),
 })

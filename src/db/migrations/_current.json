@@ -416,7 +416,7 @@
                 },
                 "bank_verification_number": {
                     "field": "bank_verification_number",
-                    "seqType": "Sequelize.INTEGER"
+                    "seqType": "Sequelize.STRING"
                 },
                 "bvn": {
                     "field": "bvn",
@@ -428,7 +428,7 @@
                 },
                 "tax_id_number": {
                     "field": "tax_id_number",
-                    "seqType": "Sequelize.INTEGER"
+                    "seqType": "Sequelize.STRING"
                 },
                 "brand_image": {
                     "field": "brand_image",
@@ -1622,5 +1622,5 @@
             "indexes": []
         }
     },
-    "revision": 28
+    "revision": 29
 }

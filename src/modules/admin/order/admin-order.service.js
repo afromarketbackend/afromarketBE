@@ -54,13 +54,15 @@ exports.getOneOrderyAdmin = async (id) =>{
         const item = await OrderedItem.findOne({where:{id:id}})
         orderedItems.push(item)
        }
+       const customer = await User.findOne({where:{id: order.UserId}})
        
         return {
             error: false,
             message: "Order retreived successfully",
             data: {
                 order: order,
-                orderedItems: orderedItems
+                orderedItems: orderedItems,
+                customer: customer
             }
         }
 
@@ -100,29 +102,29 @@ exports.searchForOrderByAdmin = async (data) =>{
     }
 }
 
-exports.getAllActiveOrdersByAdmin = async (data) =>{
+exports.getAllOrdersBySatusAdmin = async (data) =>{
     try {
-        const{startDate, endDate, limit, page} = data
+        const{startDate, endDate, limit, page, status} = data
 
-        const activeOrders = await Order.findAll({
-            where:{    
+        const paginatedOrders = await getPaginatedRecords( Order,{
+            limit: limit?Number(limit):10,
+            page: page?Number(page):1,
+            data: {
                 created_at:{[Op.between]:[
                     startDate,
                     endDate
                 ]}
                 ,
-                status:"active"
+                status:status
             }
         })
-        const actives = await paginateRaw(activeOrders,{
-            limit: Number(limit),
-            page: Number(page)
-        })
-
-          return {
+        return {
             error: false,
-            message: "Orders retreived successfully",
-            data:actives
+            message: `${status} Orders retreived successfully`,
+            data: {
+                orders: paginatedOrders,
+                pagination: paginatedOrders.perPage
+            }
         }
 
     } catch (error) {
@@ -136,75 +138,3 @@ exports.getAllActiveOrdersByAdmin = async (data) =>{
     }
 }
 
-
-exports.getAllDeliveredOrdersByAdmin = async (data) =>{
-    try {
-        const{startDate, endDate, limit, page} = data
-
-        const activeOrders = await Order.findAll({
-            where:{    
-                created_at:{[Op.between]:[
-                    startDate,
-                    endDate
-                ]}
-                ,
-                status:"delivered"
-            }
-        })
-        const actives = await paginateRaw(activeOrders,{
-            limit: Number(limit),
-            page: Number(page)
-        })
-
-          return {
-            error: false,
-            message: "Orders retreived successfully",
-            data:actives
-        }
-
-    } catch (error) {
-        console.log(error)
-        return{
-            error: true,
-            message: error.message|| "Unable to retreive orders at the moment",
-            data: null
-        }
-        
-    }
-}
-
-exports.getAllDisputedOrdersByAdmin = async (data) =>{
-    try {
-        const{startDate, endDate, limit, page} = data
-
-        const activeOrders = await Order.findAll({
-            where:{    
-                created_at:{[Op.between]:[
-                    startDate,
-                    endDate
-                ]}
-                ,
-                status:"disputed"
-            }
-        })
-        const actives = await paginateRaw(activeOrders,{
-            limit: Number(limit),
-            page: Number(page)
-        })
-
-          return {
-            error: false,
-            message: "Orders retreived successfully",
-            data:actives
-        }
-
-    } catch (error) {
-        console.log(error)
-        return{
-            error: true,
-            message: error.message|| "Unable to retreive orders at the moment",
-            data: null
-        }
-        
-    }
-}
