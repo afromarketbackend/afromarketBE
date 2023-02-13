@@ -37,11 +37,14 @@ exports.createDispute = async (payload) =>{
             },
             {raw: true}
         )
-        const url = await fileUploader(image.path)
-        await Dispute.update(
-            {product_image: url},
-            {where:{id:newDispute.id}}
-        )
+        if(image){
+            const url = await fileUploader(image.path)
+            await Dispute.update(
+                {product_image: url},
+                {where:{id:newDispute.id}}
+            )
+        }
+
         await Order.update(
             {
                 status: "disputed",
