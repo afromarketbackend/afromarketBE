@@ -18,7 +18,7 @@ const router = Router()
 
 router.post(
     '/create/:id',
-    validateRequest(singleDisputeSchema, "params"),
+    // validateRequest(singleDisputeSchema, "params"),
     upload.single('image'),
     authorize(),
     createDisputeController
