@@ -57,6 +57,10 @@ module.exports = (sequelize, DataTypes) =>{
         type: DataTypes.STRING
       },
 
+      base_name:{
+        type: DataTypes.STRING
+      },
+
       status:{
         type: DataTypes.ENUM,
         values: ["canceled", "active","delivered", "disputed"],

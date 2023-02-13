@@ -49,11 +49,13 @@ exports.createOrder = async (user, data) =>{
             first = await Product.findOne({where:{id: order_tray[0].id}})
         }
         const base_image = first.images[0]
+        const base_name = first.name
         const newOrder= await Order.create(
             {   items: '',
                 UserId:user.id,
                 delivery_address: delivery_address? delivery_address: user.delivery_address,
-                base_image: base_image
+                base_image: base_image,
+                base_name: base_name
             },
             {raw: true}
         )
