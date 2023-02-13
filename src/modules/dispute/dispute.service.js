@@ -188,7 +188,6 @@ exports.cancelDispute= async (payload) =>{
             }
         })
 
-
         if(!foundDispute){
             return{
                 error: true,
@@ -196,6 +195,21 @@ exports.cancelDispute= async (payload) =>{
                 data: null
             }
         } 
+
+        const order = await Order.findOne({where:{id: foundDispute.OrderId}})
+        if (order){
+            await Order.update(
+                {                 
+                    items: order.items,
+                    status: "delivered"
+                },{
+                    where:{
+                        id: order.id,
+    
+                    }
+                }
+            )
+        }
         await Dispute.destroy({
             where:{
                 id: dispute_id,
