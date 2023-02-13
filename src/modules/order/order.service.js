@@ -40,11 +40,20 @@ exports.createOrder = async (user, data) =>{
         let finalOrderedItems = []
         let ordered_items_ids = []
         let customers = []
+        let first 
+
+        const iv = await Inventory.findOne({where:{id: order_tray[0].id}})
+        if(iv){
+            first = iv
+        } else {
+            first = await Product.findOne({where:{id: order_tray[0].id}})
+        }
+        const base_image = first.images[0]
         const newOrder= await Order.create(
             {   items: '',
                 UserId:user.id,
                 delivery_address: delivery_address? delivery_address: user.delivery_address,
-
+                base_image: base_image
             },
             {raw: true}
         )
@@ -198,6 +207,7 @@ exports.createOrder = async (user, data) =>{
                         {where:{ProductId: product.id, deleted: false}}
                    ) 
                 }
+
                 const ordered_item = await OrderedItem.create({
                     ProductId: product.id,
                     product_name: product.name,
@@ -228,7 +238,6 @@ exports.createOrder = async (user, data) =>{
                 total_price += Number(ordered_item.total)
         }   }
         const tracking_id = 'AM'+randomString()
-
 
         await Order.update(
             {

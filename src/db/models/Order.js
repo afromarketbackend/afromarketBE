@@ -52,6 +52,11 @@ module.exports = (sequelize, DataTypes) =>{
       customer_contact:{
         type: DataTypes.STRING
       },
+
+      base_image:{
+        type: DataTypes.STRING
+      },
+
       status:{
         type: DataTypes.ENUM,
         values: ["canceled", "active","delivered", "disputed"],

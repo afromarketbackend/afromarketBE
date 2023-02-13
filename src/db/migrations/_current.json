@@ -646,6 +646,10 @@
                     "field": "customer_contact",
                     "seqType": "Sequelize.STRING"
                 },
+                "base_image": {
+                    "field": "base_image",
+                    "seqType": "Sequelize.STRING"
+                },
                 "status": {
                     "defaultValue": {
                         "value": "active"
@@ -1622,5 +1626,5 @@
             "indexes": []
         }
     },
-    "revision": 29
+    "revision": 30
 }
