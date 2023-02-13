@@ -40,14 +40,9 @@ exports.createOrder = async (user, data) =>{
         let finalOrderedItems = []
         let ordered_items_ids = []
         let customers = []
-        let first 
 
-        const iv = await Inventory.findOne({where:{id: order_tray[0].id}})
-        if(iv){
-            first = iv
-        } else {
-            first = await Product.findOne({where:{id: order_tray[0].id}})
-        }
+        const first = await Product.findOne({where:{id: order_tray[0].id, }})
+
         const base_image = first.images[0]
         const base_name = first.name
         const newOrder= await Order.create(
@@ -61,31 +56,32 @@ exports.createOrder = async (user, data) =>{
         )
         //check if quantity ordered is allowed for each item
         for(const item of order_tray){
-            const inventory = await Inventory.findOne({where: {id: item.id, deleted: false}})
-            if(inventory){
-                const product = await Product.findOne({where:{id: inventory.ProductId, deleted: false}})
-                 if(Number(product.quantity_available) < Number(item.quantity_ordered) ){
-                    return{
-                        error: true,
-                        message: `Quantity ordered for ${product.name} is more than available stock of ${product.quantity_available}`,
-                        data: null 
-                    }
+            const product = await Product.findOne({where:{id:  item.id, deleted: false}})
+                console.log("PRODUCT THAT IS AN INVENTORY>>>", product);
+            if(Number(product.quantity_available) < Number(item.quantity_ordered) ){
+                return{
+                    error: true,
+                    message: `Quantity ordered for ${product.name} is more than available stock of ${product.quantity_available}`,
+                    data: null 
                 }
-            } else{
-                const product = await Product.findOne({where:{id: item.id}})
-                if(Number(product.quantity_available) < Number(item.quantity_ordered) ){
-                    return{
-                        error: true,
-                        message: `Quantity ordered for ${product.name} is more than available stock of ${product.quantity_available}`,
-                        data: null 
-                    }
-                }
-
             }
+            // } else{
+            //     const product = await Product.findOne({where:{id: item.id}})
+            //      console.log("PRODUCT THAT IS AN INVENTORY>>>", product);
+
+            //     if(Number(product.quantity_available) < Number(item.quantity_ordered) ){
+            //         return{
+            //             error: true,
+            //             message: `Quantity ordered for ${product.name} is more than available stock of ${product.quantity_available}`,
+            //             data: null 
+            //         }
+            //     }
+
+            // }
 
         }
         for(const item of order_tray){
-            const inventory = await Inventory.findOne({where: {id: item.id, deleted: false}})
+            const inventory = await Product.findOne({where: {id: item.id, product_type: "inventory", deleted: false}})
             const product = await Product.findOne({where:{id: item.id, deleted: false}})
             if(inventory){
                 const merchant = await Merchant.findOne({where: {id: inventory.inventory_owner}})
@@ -96,24 +92,24 @@ exports.createOrder = async (user, data) =>{
                         quantity_available: stock_left
                      },
                     {where:{
-                            id: inventory.ProductId, 
+                            id: inventory.real_product_id, 
                             deleted: false
                         }
                     }
                 )
-                await Inventory.update(
+                await Product.update(
                     {
                         images: inventory.images,
                         quantity_available: stock_left 
                     },
                     {where:{
-                            ProductId: inventory.ProductId, 
+                            real_product_id: inventory.real_product_id, 
                             deleted: false
                         }
                     }
                 )
                 const updatedProduct = await Product.findOne({
-                    where: {id: inventory.ProductId, deleted: false}
+                    where: {id: inventory.real_product_id, deleted: false}
                 })
                 if(Number(updatedProduct.quantity_available) === 0){
                    await Inventory.update(
@@ -131,12 +127,12 @@ exports.createOrder = async (user, data) =>{
                         {where:{id: updatedProduct.id, deleted: false}}
                    )
                 } else {
-                    await Inventory.update(
+                    await Product.update(
                         {
                             images: inventory.images,
                             quantity_available: stock_left
                         },
-                        {where:{ProductId: updatedProduct.id, deleted: false}}
+                        {where:{real_product_id: updatedProduct.id, deleted: false}}
                     ) 
                 }
                 const resale_cut = (Number(inventory.price) - Number(updatedProduct.price))
@@ -182,12 +178,12 @@ exports.createOrder = async (user, data) =>{
                     {where:{id: product.id, deleted: false}}
                 )
                 
-                await Inventory.update(
+                await Product.update(
                     {
                         images: product.images,
                         quantity_available:stock_left
                      },
-                    {where:{ProductId: product.id, deleted: false}}
+                    {where:{real_product_id: product.id, deleted: false}}
                 )
 
                 const updatedProduct = await Product.findOne({
@@ -201,12 +197,12 @@ exports.createOrder = async (user, data) =>{
                         },
                         {where:{id: product.id, deleted: false}}
                    )
-                   await Inventory.update(
+                   await Product.update(
                         {
                             images: product.images,
                             status: 'out of stock'
                          },
-                        {where:{ProductId: product.id, deleted: false}}
+                        {where:{real_product_id: product.id, deleted: false}}
                    ) 
                 }
 

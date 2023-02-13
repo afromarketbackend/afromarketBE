@@ -198,8 +198,8 @@ exports.uploadProductImages = async(payload)=>{
 exports.getAllProductsInACategory = async (data) =>{
     try {
         const {limit, page, category_id} = data
-        const categorisedProducts = await getPaginatedRecordsForMultipleModels(
-            Product, Inventory,
+        const categorisedProducts = await getPaginatedRecords(
+            Product,
             {
                 limit: limit? Number(limit):10 , 
                 page: page?Number(page):1, 

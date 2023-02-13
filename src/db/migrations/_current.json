@@ -1043,6 +1043,21 @@
                     "field": "status",
                     "seqType": "Sequelize.ENUM('available', 'out of stock')"
                 },
+                "product_type": {
+                    "defaultValue": {
+                        "value": "product"
+                    },
+                    "field": "product_type",
+                    "seqType": "Sequelize.ENUM('product', 'inventory')"
+                },
+                "real_product_id": {
+                    "field": "real_product_id",
+                    "seqType": "Sequelize.STRING"
+                },
+                "inventory_owner": {
+                    "field": "inventory_owner",
+                    "seqType": "Sequelize.STRING"
+                },
                 "deleted": {
                     "defaultValue": {
                         "value": false
@@ -1630,5 +1645,5 @@
             "indexes": []
         }
     },
-    "revision": 31
+    "revision": 32
 }

@@ -172,7 +172,7 @@ exports.getAllProducts = async (data) =>{
         const allProducts = await getPaginatedRecords(Product, {
             limit: Number(limit),
             page: Number(page),
-            selectedFields: ["id", "name", "images", 'quantity_available', "description", "ratings", "price", "category", "CategoryId"]
+            exclusions: ["updated_at"]
         })
         if(allProducts.length < 1){
             return {

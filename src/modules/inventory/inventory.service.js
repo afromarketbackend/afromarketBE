@@ -18,9 +18,10 @@ exports.addProductToInventory = async (data) =>{
                 deleted: false
             },
         })
-        const existingInventory = await Inventory.findOne({
+        const existingInventory = await Product.findOne({
             where:{
                 inventory_owner: merchant_id,
+                product_type: 'inventory',
                 MerchantId: existingProduct.MerchantId,
                 name: existingProduct.name,
                 deleted: false
@@ -49,13 +50,14 @@ exports.addProductToInventory = async (data) =>{
                 data: null
             }
         }
-        const newInventory= await Inventory.create(
+        const newInventory= await Product.create(
             {
                 name: existingProduct.name,
-                ProductId: existingProduct.id,
+                real_product_id: existingProduct.id,
                 description: existingProduct.description,
                 specific_details: existingProduct.specific_details,
                 images:'',
+                category: existingProduct.category,
                 quantity_available: existingProduct.quantity_available,
                 price: payload.price,
                 isApproved: existingProduct.isApproved,
@@ -63,16 +65,17 @@ exports.addProductToInventory = async (data) =>{
                 MerchantId: existingProduct.MerchantId,
                 CategoryId: existingProduct.CategoryId,
                 status: existingProduct.status,
-                inventory_owner: merchant_id 
+                inventory_owner: merchant_id,
+                product_type: 'inventory'
             },
             {raw: true}
         )
-        await Inventory.update(
+        await Product.update(
             {images: existingProduct.images},
             {where:{id:newInventory.id}}
 
         )
-        const update = await Inventory.findOne({where: {id: newInventory.id}})
+        const update = await Product.findOne({where: {id: newInventory.id}})
         return {
             error: false,
             message: "Product added to inventory successfully",
@@ -95,7 +98,7 @@ exports.addProductToInventory = async (data) =>{
 exports.singleInventoryItem = async (payload) =>{
     const {inventory_id, inventory_owner} = payload
     try {
-        const existingInventory = await Inventory.findOne({
+        const existingInventory = await Product.findOne({
             where:{
                 id: inventory_id,
                 inventory_owner,
@@ -133,7 +136,7 @@ exports.singleInventoryItem = async (payload) =>{
 exports.removeProductFromInventory = async (payload) =>{
     const {inventory_id, inventory_owner} = payload
     try {
-        const existingInventory = await Inventory.findOne({
+        const existingInventory = await Product.findOne({
             where:{
                 id: inventory_id,
                 inventory_owner,
@@ -149,7 +152,7 @@ exports.removeProductFromInventory = async (payload) =>{
                 data: null
             }
         } 
-        await Inventory.update(
+        await Product.update(
             {deleted: true, images: existingInventory.images},
             {
             where:{
@@ -178,12 +181,11 @@ exports.removeProductFromInventory = async (payload) =>{
 exports.allMyInventories = async (payload) =>{
     const {inventory_owner, limit, page} = payload
     try {
-         const myInventories = await getPaginatedRecords(Inventory, {
+         const myInventories = await getPaginatedRecords(Product, {
             limit: limit? Number(limit):10,
             page:page? Number(page):1,
-            data: {inventory_owner},
-            selectedFields: ["id", "name", "images", "description", "ratings", "price", "MerchantId"]
-
+            data: {inventory_owner, deleted: false},
+            exclusions: ["updated_at"]
         })
 
         return {
@@ -209,12 +211,11 @@ exports.allMyInventories = async (payload) =>{
 exports.allInventories = async (payload) =>{
     const { limit, page} = payload
     try {
-         const myInventories = await getPaginatedRecords(Inventory, {
+         const myInventories = await getPaginatedRecords(Product, {
             limit: Number(limit),
             page: Number(page),
-            data: {},
-            selectedFields: ["id", "name", "picture", "description", "ratings", "price", "MerchantId", "inventory_owner"]
-
+            data: {product_type: "inventory"},
+            exclusions: ["updated_at"]
         })
 
         return {
@@ -241,29 +242,19 @@ exports.allInventories = async (payload) =>{
 exports.searchInventory = async (data) =>{
     try {
         const {limit, page, search} = data
-        const inventoryResult = await searchModel(Inventory, {
-            limit:Number(limit), 
-            page:Number(page), 
-            searchField: search
-        })
 
         const productResult= await searchModel(Product, {
             limit:Number(limit), 
             page:Number(page), 
             searchField: search
         })
-        const inventoryArray = inventoryResult.array
-        const productArray = productResult.array
-        const results = inventoryArray.concat(productArray)
-
-        const paginatedRecords = await paginateRaw(results, {limit, page})
 
         return{
             error: false,
             message: "products retreived successfully",
             data: {
-                result: paginatedRecords,
-                pagination: paginatedRecords.perPage
+                result: productResult,
+                pagination: productResult.perPage
             }
         }
 

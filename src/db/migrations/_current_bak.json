@@ -650,6 +650,10 @@
                     "field": "base_image",
                     "seqType": "Sequelize.STRING"
                 },
+                "base_name": {
+                    "field": "base_name",
+                    "seqType": "Sequelize.STRING"
+                },
                 "status": {
                     "defaultValue": {
                         "value": "active"
@@ -1626,5 +1630,5 @@
             "indexes": []
         }
     },
-    "revision": 30
+    "revision": 31
 }

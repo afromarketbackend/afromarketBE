@@ -57,6 +57,17 @@ module.exports = (sequelize, DataTypes) =>{
         values: ['available', 'out of stock'],
         defaultValue: 'available'
       },
+      product_type: {
+       type: DataTypes.ENUM,
+        values:['product','inventory'],
+        defaultValue: 'product'
+      },
+      real_product_id: {
+        type: DataTypes.STRING,
+      },
+      inventory_owner: {
+        type: DataTypes.STRING,
+      },
       deleted:{
         type: DataTypes.BOOLEAN,
         defaultValue: false

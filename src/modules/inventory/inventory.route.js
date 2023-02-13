@@ -54,8 +54,7 @@ router.patch(
 
 router.post(
     '/find',
-    validateRequest(searchInventorySchema, "body"),
-    validateRequest(getAllProductSchema, "query"),
+    validateRequest(searchInventorySchema, "query"),
     searchInventoryController
 )
 

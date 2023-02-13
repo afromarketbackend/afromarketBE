@@ -16,4 +16,6 @@ exports.getAllProductSchema = Joi.object({
 
 exports.searchInventorySchema = Joi.object({
   search:  Joi.string().required(),
+  page: Joi.number().positive().optional(),
+  limit: Joi.number().positive().optional(),
 });

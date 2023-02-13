@@ -154,7 +154,7 @@ exports.searchInventoryController = async (req, res, next) => {
         const {error, message, data} = await InventoryService.searchInventory({
             limit: req.query.limit,
             page: req.query.page,
-            search: req.body.search
+            search: req.query.search
         })
 
        const allResults = {
