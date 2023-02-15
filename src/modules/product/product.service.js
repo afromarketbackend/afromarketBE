@@ -45,6 +45,7 @@ exports.uploadProduct = async (payload) =>{
             {
                 name: String(name).toLowerCase(),
                 description,
+                images: "",
                 specific_details: specific_details? specific_details: {},
                 quantity_available: Number(quantity_available),
                 price: Number(price),
