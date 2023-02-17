@@ -995,6 +995,9 @@
                     "seqType": "Sequelize.STRING"
                 },
                 "images": {
+                    "defaultValue": {
+                        "value": ""
+                    },
                     "field": "images",
                     "seqType": "Sequelize.STRING"
                 },

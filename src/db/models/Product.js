@@ -26,7 +26,8 @@ module.exports = (sequelize, DataTypes) =>{
         },
         set(val){
           this.setDataValue('images', val.join(';'))
-        }
+        },
+        defaultValue: ''
       },
       description: {
         type: DataTypes.STRING,

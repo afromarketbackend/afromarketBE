@@ -224,7 +224,7 @@ exports.removeProduct = async (user, data) =>{
             }
         }
         await Product.update(
-                {deleted: true},
+                {deleted: true, images: existingProduct.images},
                 {
                     where:{
                         id: (data.id),
