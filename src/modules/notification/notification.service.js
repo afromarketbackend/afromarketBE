@@ -37,7 +37,6 @@ exports.getMyNotifications = async (payload) =>{
             limit: limit?Number(limit): 10,
             page: page? Number(page): 1,
             data : {
-                isRead: false,
                 [Op.or]: [{MerchantId: user.id}, {UserId: user.id}]
             },
             // data : {isRead: false,},
