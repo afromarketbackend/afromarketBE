@@ -547,6 +547,82 @@
             },
             "indexes": []
         },
+        "Notifications": {
+            "tableName": "Notifications",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "unique": true,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.UUIDV4"
+                    },
+                    "field": "id",
+                    "seqType": "Sequelize.UUID"
+                },
+                "title": {
+                    "field": "title",
+                    "seqType": "Sequelize.STRING"
+                },
+                "body": {
+                    "unique": true,
+                    "field": "body",
+                    "seqType": "Sequelize.STRING"
+                },
+                "associated_model": {
+                    "allowNull": true,
+                    "field": "associated_model",
+                    "seqType": "Sequelize.STRING"
+                },
+                "isRead": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "isRead",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "deleted": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "deleted",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "created_at": {
+                    "allowNull": false,
+                    "field": "created_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updated_at": {
+                    "allowNull": false,
+                    "field": "updated_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "MerchantId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Merchants",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "field": "MerchantId",
+                    "seqType": "Sequelize.UUID"
+                },
+                "UserId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "field": "UserId",
+                    "seqType": "Sequelize.UUID"
+                }
+            },
+            "indexes": []
+        },
         "OneTimePasswords": {
             "tableName": "OneTimePasswords",
             "schema": {
@@ -1648,5 +1724,5 @@
             "indexes": []
         }
     },
-    "revision": 32
+    "revision": 33
 }

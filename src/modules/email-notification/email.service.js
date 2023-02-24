@@ -7,6 +7,8 @@ const KEYS = require('../../common/config/keys')
 const {
     sequelize,
     Order,
+    Notification,
+    User,
     Product,
     OrderedItem,
     Merchant,
@@ -190,4 +192,27 @@ exports.sendMailToMerchant = async (data) =>{
         }
         
     }
+}
+
+exports.createInAppNotification = async (data) => {
+    const {title, productIds } = data
+    const notifications = []
+    for (const id of productIds){
+        const item = await OrderedItem.findOne({where:{id}})
+        const merchant = await Merchant.findOne({where:{id: item.MerchantId}})
+        const body = `
+            The following orders where placed for your product
+            product name: ${item.product_name},
+            quantity ordered: ${item.quantity_ordered},
+            price per quantity: ${item.price},
+            total: N${item.total}
+        `
+        const notification = await Notification.create({
+            title: title,
+            body: body,
+            MerchantId: merchant.id
+        })
+        notifications.push(notification)
+    }
+    return notifications
 }

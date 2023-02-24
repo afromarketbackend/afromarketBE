@@ -6,7 +6,8 @@ const {Op} = Sequelize
 const randomString = require('../../common/helpers/randString')
 const {
     sendOrderDetailstoMail,
-    sendMailToMerchant
+    sendMailToMerchant,
+    createInAppNotification
 } = require('../email-notification/email.service')
 const {deliveryDate} = require('../../common/helpers/deliveryDate')
 const { uuid } = require('uuidv4')
@@ -19,6 +20,7 @@ const {
     Product,
     OrderedItem,
     Inventory,
+    Notification,
     Customer,
     Merchant,
     Tracker
@@ -283,6 +285,15 @@ exports.createOrder = async (user, data) =>{
         const merchantMail = await sendMailToMerchant({
             productIds: ordered_items_ids
         })
+
+
+        //Create InApp Notification
+        const payload = {
+            title: "ORDER FOR YOUR PRODUCT",
+            productIds: ordered_items_ids 
+        }
+        const inAppNotification = await createInAppNotification(payload)
+
         //Assemble payment details
         const paymentDetails = {
             tx_ref: uuid(),
@@ -310,7 +321,8 @@ exports.createOrder = async (user, data) =>{
                 merchantMailResponse: merchantMail.data,
                 paymentDetails: paymentDetails,
                 withdrawalDetails: withdrawal,
-                customers: customers
+                customers: customers,
+                merchantNotification: inAppNotification
 
             }
         }
